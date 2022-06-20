@@ -1,0 +1,15 @@
+{
+  "name": "eatiplan-user-service",
+  "version": "1.0.0",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "husky": "^8.0.1"
+  }
+}

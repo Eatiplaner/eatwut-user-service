@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  eatiplan-user-service:
+    container_name: eatiplan-user-service
+    restart: always
+    env_file: .env
+    build: .
