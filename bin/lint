@@ -1,3 +1,6 @@
 #!/bin/bash
 
+virtualenv env
+source env/bin/activate
+
 flake8 --exclude node_modules,venv
