@@ -17,3 +17,8 @@ $ docker-compose up --build
 ```bash
 $ bin/dev
 ```
+
+### ✨ Linting
+
+$ bin/lint
+```
