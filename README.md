@@ -18,6 +18,14 @@ $ docker-compose up --build
 $ bin/dev
 ```
 
+### ✨ Quick Start in `mongodb_local`
+
+```bash
+$ mongo "mongodb://{user_mongo}:{pass_mongo}@localhost:27017"
+$ use eatiplaner-user-service
+$ load("database/migrations/db.js")
+```
+
 ### ✨ Linting
 
 ```bash

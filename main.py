@@ -9,7 +9,9 @@ app = Flask(__name__)
 
 def connect():
     uri = os.environ.get("DATABASE_URL")
-    client = MongoClient(uri, serverSelectionTimeoutMS=6000)
+    client = MongoClient(uri,
+                         serverSelectionTimeoutMS=10000,
+                         connectTimeoutMS=10000)
     return client
 
 
@@ -18,7 +20,7 @@ def init_app():
     # TODO: init mongo db here
     # connect()
     # TODO: init grpc server here
-    print("Hello Eatiplan")
+    print("Hello Eatiplaner")
 
 
 @app.route("/health")
@@ -26,10 +28,16 @@ def health():
     return make_response({}, 200)
 
 
-@app.route("/conn_db")
-def conn_db():
+@app.route("/test_findone_user")
+def test_findone_user():
     client = connect()
-    db = client["eatiplan-user-service"]
-    User = db.User
-    res = json.loads(json_util.dumps(User.find_one()))
-    return res
+    try:
+        info = client.server_info()
+        print(info)
+    finally:
+        print("Server Down")
+
+    db = client["eatiplaner-user-service"]
+    user = db.user
+    result = json.loads(json_util.dumps(user.find_one()))
+    return result

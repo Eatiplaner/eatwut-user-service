@@ -1,5 +1,5 @@
 {
-  "name": "eatiplan-user-service",
+  "name": "eatiplaner-user-service",
   "version": "1.0.0",
   "scripts": {
     "prepare": "husky install"

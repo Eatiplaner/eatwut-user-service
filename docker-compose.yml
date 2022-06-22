@@ -1,7 +1,7 @@
 version: "3.10"
 services:
-  eatiplan-user-service:
-    container_name: eatiplan-user-service
+  eatiplaner-user-service:
+    container_name: eatiplaner-user-service
     restart: always
     env_file: .env
     build: .
