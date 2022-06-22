@@ -1,16 +1,16 @@
+import os
 from flask import Flask, make_response
-# from pymongo import MongoClient
+from pymongo import MongoClient
+from bson import json_util
+import json
 
 app = Flask(__name__)
 
 
-# def connect():
-#     db_user = "mongo"
-#     db_pass = "0815985051"
-#     db_addr = "localhost:27017"
-#     uri = "mongodb://{0}:{1}@{2}".format(db_user, db_pass, db_addr)
-#     client = MongoClient(uri, serverSelectionTimeoutMS=6000)
-#     return client
+def connect():
+    uri = os.environ.get("DATABASE_URL")
+    client = MongoClient(uri, serverSelectionTimeoutMS=6000)
+    return client
 
 
 @app.before_first_request
@@ -24,3 +24,12 @@ def init_app():
 @app.route("/health")
 def health():
     return make_response({}, 200)
+
+
+@app.route("/conn_db")
+def conn_db():
+    client = connect()
+    db = client["eatiplan-user-service"]
+    User = db.User
+    res = json.loads(json_util.dumps(User.find_one()))
+    return res
