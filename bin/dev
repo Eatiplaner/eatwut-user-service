@@ -7,6 +7,5 @@ pip install -r requirements.txt
 
 export FLASK_APP=main.py
 export FLASK_ENV=development
-export DATABASE_URL=mongodb://mongo:0815985051@localhost:27017
 
 flask run
