@@ -1,26 +1,32 @@
-from flask import Flask, make_response
-# from pymongo import MongoClient
+from app.controller import *
+from app.main import create_app
+import os
+import unittest
 
-app = Flask(__name__)
-
-
-# def connect():
-#     db_user = "mongo"
-#     db_pass = "0815985051"
-#     db_addr = "localhost:27017"
-#     uri = "mongodb://{0}:{1}@{2}".format(db_user, db_pass, db_addr)
-#     client = MongoClient(uri, serverSelectionTimeoutMS=6000)
-#     return client
+from flask_script import Manager
+from dotenv import load_dotenv
+load_dotenv()
 
 
-@app.before_first_request
-def init_app():
-    # TODO: init mongo db here
-    # connect()
-    # TODO: init grpc server here
-    print("Hello Eatiplan")
+app = create_app(os.getenv('TARGET_ENV') or 'dev')
+app.app_context().push()
+
+manager = Manager(app)
 
 
-@app.route("/health")
-def health():
-    return make_response({}, 200)
+@manager.command
+def run():
+    app.run()
+
+
+@manager.command
+def test():
+    tests = unittest.TestLoader().discover('app/test', pattern='test*.py')
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        return 0
+    return 1
+
+
+if __name__ == '__main__':
+    manager.run()

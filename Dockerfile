@@ -10,4 +10,4 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["gunicorn", "--config", "gunicorn-cfg.py", "main:app"]
+CMD ["python", "main.py", "run"]
