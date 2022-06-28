@@ -20,5 +20,6 @@ $ bin/dev
 
 ### ✨ Linting
 
+```bash
 $ bin/lint
 ```
