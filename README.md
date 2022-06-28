@@ -18,6 +18,12 @@ $ docker-compose up --build
 $ bin/dev
 ```
 
+### ✨ Running Python shell
+
+```bash
+$ bin/console
+```
+
 ### ✨ Linting
 
 ```bash
