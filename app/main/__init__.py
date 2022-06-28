@@ -1,11 +1,9 @@
 from flask import Flask
 from mongoengine import connect
 
-from app.model.address import Address
-from app.model.user import User
+from app.health_module.controller import health_module
 
 from .config import config_by_name
-
 
 app = Flask(__name__)
 
@@ -14,6 +12,7 @@ def create_app(config_name):
 
     config = config_by_name[config_name]
     app.config.from_object(config)
+    register_modules()
 
     connect(
         db=config.MONGO_DB,
@@ -23,21 +22,13 @@ def create_app(config_name):
         password=config.MONGO_PASSWORD
     )
 
-    # NOTE: Test saving user will remove later
-    home_address = Address(district="District 1",
-                           city="Danang", type="home").save()
-    User(
-        username="username",
-        password="123456",
-        first_name="louis",
-        last_name="nguyen",
-        email="eatiplaner@gmail.com",
-        addresses=[home_address],
-    ).save()
-
     app.logger.info(
         "Mongo connected on %s:%s",
         config.MONGO_HOST, config.MONGO_PORT
     )
 
     return app
+
+
+def register_modules():
+    app.register_blueprint(health_module)

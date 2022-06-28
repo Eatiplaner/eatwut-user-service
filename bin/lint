@@ -3,4 +3,4 @@
 virtualenv env
 source env/bin/activate
 
-flake8 --exclude node_modules,venv
+flake8 *.py

@@ -1,4 +1,3 @@
-from app.controller import *
 from app.main import create_app
 import os
 import unittest

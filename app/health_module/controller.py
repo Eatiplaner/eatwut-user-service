@@ -1,8 +1,7 @@
 from flask import make_response
+from . import health_module
 
-from app.main import app
 
-
-@app.route("/health")
+@health_module.route("/health")
 def health():
     return make_response({}, 200)
