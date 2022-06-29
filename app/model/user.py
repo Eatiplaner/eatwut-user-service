@@ -2,7 +2,7 @@ from mongoengine import BooleanField, \
     Document, EmailField, ListField, ReferenceField, StringField
 
 from .address import Address
-from app.constants.regex import passwordRegex 
+from app.constants.regex import passwordRegex
 
 
 class User(Document):
@@ -18,5 +18,5 @@ class User(Document):
     addresses = ListField(ReferenceField(Address))
 
     meta = {
-        'indexes': ['username']
+        'indexes': ['username', 'email']
     }
