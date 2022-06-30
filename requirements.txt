@@ -5,3 +5,4 @@ flask_script==2.0.5
 mongoengine==0.24.1
 flask_testing==0.8.1
 python-dotenv==0.20.0
+bcrypt==3.2.2
