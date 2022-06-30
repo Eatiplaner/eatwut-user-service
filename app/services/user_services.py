@@ -1,3 +1,4 @@
+from mongoengine import DoesNotExist, Q
 from app.model.user import User
 
 
@@ -11,15 +12,16 @@ def create_user(data):
     return User(**data).save()
 
 
-def verify_user_credential(data):
+def find_user_by_credential(data):
     username = data.get("username")
     email = data.get("email")
     password = data.get("password")
 
-    # TODO: query by username or email
-    user = User.objects.get(username=username, email=email)
+    try:
+        user = User.objects.get(Q(username=username) | Q(email=email))
+        if not user.verifyPassword(password):
+            return None
+    except DoesNotExist:
+        return None
 
-    if user.verifyPassword(password):
-        return user
-    else:
-        return False
+    return user
