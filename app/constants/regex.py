@@ -3,6 +3,6 @@
     at least one uppercase letter
     one lowercase letter
     one number
-    and one special character
+    one special character include: @$!%*?&
 """
-passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]$"
+passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]*$"

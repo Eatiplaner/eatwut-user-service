@@ -1,13 +1,17 @@
+import bcrypt
+import re
+
+from app.constants.regex import passwordRegex
+
 from mongoengine import BooleanField, \
     Document, EmailField, ListField, ReferenceField, StringField
 
 from .address import Address
-from app.constants.regex import passwordRegex
 
 
 class User(Document):
     username = StringField(max_length=20, required=True, unique=True)
-    password = StringField(min_length=8, required=True, regex=passwordRegex)
+    password = StringField(required=True)
     first_name = StringField(max_length=10, required=True)
     last_name = StringField(max_length=10, required=True)
     email = EmailField(required=True, unique=True)
@@ -20,3 +24,22 @@ class User(Document):
     meta = {
         'indexes': ['username', 'email']
     }
+
+    def verifyPassword(self, input):
+        encode_passwd = self.password.encode("utf-8")
+
+        if bcrypt.hashpw(input.encode("utf-8"), encode_passwd) == encode_passwd:
+            return True
+        else:
+            return False
+
+    @classmethod
+    def validPassword(cls, password):
+        return re.match(passwordRegex, password) and len(password) >= 8
+
+    @classmethod
+    def generateHashPassword(cls, password):
+        salt = bcrypt.gensalt()
+        encode_passwd = password.encode("utf-8")
+
+        return (bcrypt.hashpw(encode_passwd, salt)).decode("utf-8")
