@@ -24,7 +24,7 @@ def mongo_connect():
     username = os.getenv('MONGO_USER')
     password = os.getenv('MONGO_PASSWORD')
 
-    host = f'mongodb://{username}:{password}@{host}:{port}/{db}?tlsInsecure=true'
+    host = f'mongodb://{username}:{password}@{host}:{port}/{db}'
 
     app.logger.info(
         "Mongo connected on %s",
