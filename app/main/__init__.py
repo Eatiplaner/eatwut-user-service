@@ -12,17 +12,22 @@ def create_app(config_name):
     config = config_by_name[config_name]
     app.config.from_object(config)
 
-    connect(
-        db=os.getenv('MONGO_DB'),
-        host=os.getenv('MONGO_HOST'),
-        port=int(os.getenv('MONGO_PORT') or "27017"),
-        username=os.getenv('MONGO_USER'),
-        password=os.getenv('MONGO_PASSWORD')
-    )
-
-    app.logger.info(
-        "Mongo connected on %s:%s",
-        os.getenv('MONGO_HOST'), os.getenv('MONGO_PORT')
-    )
+    mongo_connect()
 
     return app
+
+
+def mongo_connect():
+    db = os.getenv('MONGO_DB')
+    host = os.getenv('MONGO_HOST')
+    port = int(os.getenv('MONGO_PORT') or "27017")
+    username = os.getenv('MONGO_USER')
+    password = os.getenv('MONGO_PASSWORD')
+
+    host = f'mongodb://{username}:{password}@{host}:{port}/{db}?tlsInsecure=true'
+
+    app.logger.info(
+        "Mongo connected on %s",
+        host
+    )
+    connect(host=host)
