@@ -6,3 +6,6 @@ mongoengine==0.24.1
 flask_testing==0.8.1
 python-dotenv==0.20.0
 bcrypt==3.2.2
+grpcio-tools==1.47.0
+futures==3.1.1
+grpcio-reflection==1.47.0

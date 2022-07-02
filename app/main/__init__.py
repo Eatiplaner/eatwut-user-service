@@ -1,7 +1,6 @@
+import os
 from flask import Flask
 from mongoengine import connect
-
-from app.health_module.controller import health_module
 
 from .config import config_by_name
 
@@ -12,23 +11,18 @@ def create_app(config_name):
 
     config = config_by_name[config_name]
     app.config.from_object(config)
-    register_modules()
 
     connect(
-        db=config.MONGO_DB,
-        host=config.MONGO_HOST,
-        port=int(config.MONGO_PORT or "27017"),
-        username=config.MONGO_USER,
-        password=config.MONGO_PASSWORD
+        db=os.getenv('MONGO_DB'),
+        host=os.getenv('MONGO_HOST'),
+        port=int(os.getenv('MONGO_PORT') or "27017"),
+        username=os.getenv('MONGO_USER'),
+        password=os.getenv('MONGO_PASSWORD')
     )
 
     app.logger.info(
         "Mongo connected on %s:%s",
-        config.MONGO_HOST, config.MONGO_PORT
+        os.getenv('MONGO_HOST'), os.getenv('MONGO_PORT')
     )
 
     return app
-
-
-def register_modules():
-    app.register_blueprint(health_module)

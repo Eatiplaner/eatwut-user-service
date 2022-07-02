@@ -19,9 +19,9 @@ def find_user_by_credential(data):
 
     try:
         user = User.objects.get(Q(username=username) | Q(email=email))
-        if not user.verifyPassword(password):
-            return None
+        if user.verifyPassword(password):
+            return user
     except DoesNotExist:
         return None
 
-    return user
+    return None
