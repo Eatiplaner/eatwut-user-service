@@ -1,3 +1,4 @@
+import json
 import bcrypt
 import re
 
@@ -33,6 +34,17 @@ class User(Document):
             return True
         else:
             return False
+
+    def proto_data(self):
+        data = json.loads(self.to_json())
+        data['id'] = self.ID
+
+        del data['_id']
+        del data['ID']
+        del data['addresses']
+        del data['password']
+
+        return data
 
     @classmethod
     def validPassword(cls, password):

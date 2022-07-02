@@ -16,6 +16,7 @@ dependencies=$(yq .dependencies $proto_yaml_file)
 
 command=$(yq .command $proto_yaml_file)
 
+rm -rf $outpb/*
 rm -rf $outdir/*
 
 fetch_proto() {
