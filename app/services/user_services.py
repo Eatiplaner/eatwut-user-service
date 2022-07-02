@@ -8,6 +8,7 @@ def create_user(data):
         raise Exception("Password is not valid")
 
     data["password"] = User.generateHashPassword(password)
+    data["ID"] = User.objects.count() + 1
 
     return User(**data).save()
 

@@ -10,7 +10,7 @@ class LoginSignupService(login_signup_pb2_grpc.LoginSignupService):
             user = create_user(MessageToDict(request))
 
             return login_signup_pb2.UserResponse(
-                id=user.username, # TODO: fix id
+                id=user.ID,
                 username=user.username,
                 email=user.email,
                 first_name=user.first_name,
@@ -18,7 +18,6 @@ class LoginSignupService(login_signup_pb2_grpc.LoginSignupService):
             )
         except Exception as e:
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
-            # TODO: better message back
             context.set_details(repr(e))
 
             return login_signup_pb2.UserResponse()
@@ -30,7 +29,7 @@ class LoginSignupService(login_signup_pb2_grpc.LoginSignupService):
         print(user)
         if user is not None:
             return login_signup_pb2.UserResponse(
-                id=user.username, # TODO: fix id
+                id=user.ID,
                 username=user.username,
                 email=user.email,
                 first_name=user.first_name,

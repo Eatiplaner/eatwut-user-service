@@ -4,12 +4,13 @@ import re
 from app.constants.regex import passwordRegex
 
 from mongoengine import BooleanField, \
-    Document, EmailField, ListField, ReferenceField, StringField
+    Document, EmailField, IntField, ListField, ReferenceField, StringField
 
 from .address import Address
 
 
 class User(Document):
+    ID = IntField(min_value=1)
     username = StringField(max_length=20, required=True, unique=True)
     password = StringField(required=True)
     first_name = StringField(max_length=10, required=True)
