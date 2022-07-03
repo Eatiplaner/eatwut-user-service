@@ -1,15 +1,17 @@
+import json
 import bcrypt
 import re
 
 from app.constants.regex import passwordRegex
 
 from mongoengine import BooleanField, \
-    Document, EmailField, ListField, ReferenceField, StringField
+    Document, EmailField, IntField, ListField, ReferenceField, StringField
 
 from .address import Address
 
 
 class User(Document):
+    ID = IntField(min_value=1)
     username = StringField(max_length=20, required=True, unique=True)
     password = StringField(required=True)
     first_name = StringField(max_length=10, required=True)
@@ -32,6 +34,17 @@ class User(Document):
             return True
         else:
             return False
+
+    def proto_data(self):
+        data = json.loads(self.to_json())
+        data['id'] = self.ID
+
+        del data['_id']
+        del data['ID']
+        del data['addresses']
+        del data['password']
+
+        return data
 
     @classmethod
     def validPassword(cls, password):
