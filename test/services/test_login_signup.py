@@ -7,7 +7,7 @@ email = 'eatiplaner01@gmail.com'
 
 
 class TestLoginSignupService(BaseMock):
-    @ classmethod
+    @classmethod
     def setUpClass(cls):
         super().setUpClass()
         userPassword = User.generate_hash_password(password)
