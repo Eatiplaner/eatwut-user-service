@@ -1,14 +1,15 @@
-import unittest
 from app.model.user import User
 from app.services.login_signup import create_user, find_user_by_credential
+from test import BaseMock
 
 password = "eatiplaner01!123"
 email = 'eatiplaner01@gmail.com'
 
 
-class TestLoginSignupService(unittest.TestCase):
-    @classmethod
+class TestLoginSignupService(BaseMock):
+    @ classmethod
     def setUpClass(cls):
+        super().setUpClass()
         userPassword = User.generate_hash_password(password)
 
         user = User(

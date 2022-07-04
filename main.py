@@ -2,7 +2,6 @@ from app import grpc
 from app.main import create_app
 import os
 import unittest
-from mongoengine import connect, disconnect
 
 from flask_script import Manager
 from dotenv import load_dotenv
@@ -22,8 +21,6 @@ def run():
 
 @manager.command
 def test():
-    connect('test_mongoengine', host='mongomock://localhost')
-
     tests = unittest.TestLoader().discover('test', pattern='test_*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
 
@@ -32,7 +29,6 @@ def test():
     if not result.wasSuccessful():
         status = 1
 
-    disconnect()
     return status
 
 
