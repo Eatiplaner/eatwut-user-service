@@ -13,3 +13,14 @@ jobs:
 
       - name: lint
         run: bin/lint
+
+  test:
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: ./.github/actions/install-deps
+
+      - name: test
+        run: bin/test
