@@ -4,10 +4,10 @@ from app.model.user import User
 
 def create_user(data):
     password = data.get("password")
-    if not User.validPassword(password):
+    if not User.valid_password(password):
         raise Exception("Password is not valid")
 
-    data["password"] = User.generateHashPassword(password)
+    data["password"] = User.generate_hash_password(password)
     data["ID"] = User.objects.count() + 1
 
     return User(**data).save()
@@ -20,7 +20,7 @@ def find_user_by_credential(data):
 
     try:
         user = User.objects.get(Q(username=username) | Q(email=email))
-        if user.verifyPassword(password):
+        if user.verify_password(password):
             return user
     except DoesNotExist:
         return None

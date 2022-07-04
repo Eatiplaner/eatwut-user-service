@@ -2,7 +2,7 @@ import grpc
 
 from google.protobuf.json_format import MessageToDict
 from app.grpc.rpc_pb import login_signup_pb2_grpc, login_signup_pb2
-from app.services.user_services import create_user, find_user_by_credential
+from app.services.login_signup import create_user, find_user_by_credential
 
 
 class LoginSignupService(login_signup_pb2_grpc.LoginSignupService):

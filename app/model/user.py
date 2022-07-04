@@ -27,7 +27,7 @@ class User(Document):
         'indexes': ['username', 'email']
     }
 
-    def verifyPassword(self, input):
+    def verify_password(self, input):
         encode_passwd = self.password.encode("utf-8")
 
         if bcrypt.hashpw(input.encode("utf-8"), encode_passwd) == encode_passwd:
@@ -47,11 +47,11 @@ class User(Document):
         return data
 
     @classmethod
-    def validPassword(cls, password):
+    def valid_password(cls, password):
         return re.match(passwordRegex, password) and len(password) >= 8
 
     @classmethod
-    def generateHashPassword(cls, password):
+    def generate_hash_password(cls, password):
         salt = bcrypt.gensalt()
         encode_passwd = password.encode("utf-8")
 
