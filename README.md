@@ -18,6 +18,12 @@ $ docker-compose up --build
 $ bin/dev
 ```
 
+### ✨ Running unit test
+
+```bash
+$ bin/test
+```
+
 ### ✨ Running Python shell
 
 ```bash

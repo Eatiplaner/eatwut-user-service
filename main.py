@@ -21,11 +21,15 @@ def run():
 
 @manager.command
 def test():
-    tests = unittest.TestLoader().discover('app/test', pattern='test*.py')
+    tests = unittest.TestLoader().discover('test', pattern='test_*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
-    if result.wasSuccessful():
-        return 0
-    return 1
+
+    status = 0
+
+    if not result.wasSuccessful():
+        status = 1
+
+    return status
 
 
 if __name__ == '__main__':

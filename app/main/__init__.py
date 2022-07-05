@@ -12,7 +12,8 @@ def create_app(config_name):
     config = config_by_name[config_name]
     app.config.from_object(config)
 
-    mongo_connect()
+    if not config.TESTING:
+        mongo_connect()
 
     return app
 
