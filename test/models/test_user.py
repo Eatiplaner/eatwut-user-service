@@ -1,24 +1,36 @@
 from app.model.user import User
 from test import BaseMock
+from test.utils import random_email
 
 
 class TestUserModel(BaseMock):
     def test_create_user_with_valid_data(self):
-        user = User(
-            ID=1,
-            username='stephen_jamson',
+        user1 = User(
             password="Aa@123456!",
             full_name='Stephen Jamson',
-            email="test@gmail.com"
+            email=random_email()
         )
+        user1.save()
 
-        user.save()
-        assert User.objects.count() == 1
+        user2 = User(
+            password="Aa@123456!",
+            full_name='Stephen Jamson',
+            email=random_email()
+        )
+        user2.save()
+
+        assert User.objects.count() == 2
+
+        # Check Generated User name
+        assert user1.username == "stephen_jamson"
+        assert user1.username != user2.username
+
+        # Check Generated ID
+        assert user1.ID == 1
+        assert user2.ID == 2
 
     def test_create_user_with_invalid_email_format(self):
         user = User(
-            ID=1,
-            username='stephen_jamson',
             password="Aa@123456!",
             full_name='Stephen Jamson',
             email="test.com"
@@ -28,56 +40,25 @@ class TestUserModel(BaseMock):
             user.save()
 
     def test_create_user_with_weak_passwords(self):
-        user1 = User(
-            ID=1,
-            username='stephen_jamson',
-            password="123456789",
-            full_name='Stephen Jamson',
-            email="test@gmail.com"
-        )
-
-        with self.assertRaises(Exception):
-            user1.save()
-
-        user2 = User(
-            ID=1,
-            username='stephen_jamson',
-            password="abcde",
-            full_name='Stephen Jamson',
-            email="test@gmail.com"
-        )
-
-        with self.assertRaises(Exception):
-            user2.save()
-
-        user3 = User(
-            ID=1,
-            username='stephen_jamson',
-            password="abcde@12",
-            full_name='Stephen Jamson',
-            email="test@gmail.com"
-        )
-
-        with self.assertRaises(Exception):
-            user3.save()
+        assert User.valid_password("123456789") is False
+        assert User.valid_password("abcde") is False
+        assert User.valid_password("abcde@12") is False
 
     def test_create_user_with_missing_fields(self):
-        user1 = User(
-            ID=1,
-            username='stephen_jamson',
-            password="123456789",
-            email="test@gmail.com"
-        )
+        with self.assertRaises(Exception):
+            User(
+                password="123456789",
+                full_name='Stephen Jamson',
+            ).save()
 
         with self.assertRaises(Exception):
-            user1.save()
-
-        user2 = User(
-            ID=1,
-            username='stephen_jamson',
-            password="abcde",
-            full_name='Stephen Jamson'
-        )
+            User(
+                full_name='Stephen Jamson',
+                email=random_email()
+            ).save()
 
         with self.assertRaises(Exception):
-            user2.save()
+            User(
+                password="abcde@12",
+                email=random_email()
+            ).save()
