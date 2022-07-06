@@ -3,10 +3,12 @@ from app.model.user import User
 
 
 def create_user(data):
+    full_name = data.get('full_name')
     password = data.get("password")
     if not User.valid_password(password):
         raise Exception("Password is not valid")
 
+    data["username"] = full_name
     data["password"] = User.generate_hash_password(password)
     data["ID"] = User.objects.count() + 1
 

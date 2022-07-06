@@ -6,10 +6,9 @@ class TestUserModel(BaseMock):
     def test_create_user_with_valid_data(self):
         user = User(
             ID=1,
-            username='eatiplaner01',
+            username='stephen_jamson',
             password="Aa@123456!",
-            first_name='stephen',
-            last_name='jamson',
+            full_name='Stephen Jamson',
             email="test@gmail.com"
         )
 
@@ -19,10 +18,9 @@ class TestUserModel(BaseMock):
     def test_create_user_with_invalid_email_format(self):
         user = User(
             ID=1,
-            username='eatiplaner01',
+            username='stephen_jamson',
             password="Aa@123456!",
-            first_name='stephen',
-            last_name='jamson',
+            full_name='Stephen Jamson',
             email="test.com"
         )
 
@@ -32,10 +30,9 @@ class TestUserModel(BaseMock):
     def test_create_user_with_weak_passwords(self):
         user1 = User(
             ID=1,
-            username='eatiplaner01',
+            username='stephen_jamson',
             password="123456789",
-            first_name='stephen',
-            last_name='jamson',
+            full_name='Stephen Jamson',
             email="test@gmail.com"
         )
 
@@ -44,10 +41,9 @@ class TestUserModel(BaseMock):
 
         user2 = User(
             ID=1,
-            username='eatiplaner01',
+            username='stephen_jamson',
             password="abcde",
-            first_name='stephen',
-            last_name='jamson',
+            full_name='Stephen Jamson',
             email="test@gmail.com"
         )
 
@@ -56,10 +52,9 @@ class TestUserModel(BaseMock):
 
         user3 = User(
             ID=1,
-            username='eatiplaner01',
+            username='stephen_jamson',
             password="abcde@12",
-            first_name='stephen',
-            last_name='jamson',
+            full_name='Stephen Jamson',
             email="test@gmail.com"
         )
 
@@ -69,9 +64,8 @@ class TestUserModel(BaseMock):
     def test_create_user_with_missing_fields(self):
         user1 = User(
             ID=1,
+            username='stephen_jamson',
             password="123456789",
-            first_name='stephen',
-            last_name='jamson',
             email="test@gmail.com"
         )
 
@@ -80,22 +74,10 @@ class TestUserModel(BaseMock):
 
         user2 = User(
             ID=1,
-            username='eatiplaner01',
+            username='stephen_jamson',
             password="abcde",
-            last_name='jamson',
-            email="test@gmail.com"
+            full_name='Stephen Jamson'
         )
 
         with self.assertRaises(Exception):
             user2.save()
-
-        user3 = User(
-            ID=1,
-            username='eatiplaner01',
-            password="abcde@12",
-            first_name='stephen',
-            email="test@gmail.com"
-        )
-
-        with self.assertRaises(Exception):
-            user3.save()
