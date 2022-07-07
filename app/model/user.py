@@ -3,6 +3,8 @@ import secrets
 import bcrypt
 import re
 
+from unidecode import unidecode
+
 from app.constants.regex import passwordRegex
 
 from mongoengine import BooleanField, \
@@ -71,7 +73,8 @@ class User(Document):
 
     @classmethod
     def generate_username(cls, document):
-        original_username = document.full_name.lower().replace(" ", "_")
+        fullname_unidecode = unidecode(document.full_name)
+        original_username = fullname_unidecode.lower().replace(" ", "_")
         username = original_username
 
         try:
