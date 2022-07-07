@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import app.grpc.rpc_pb.jwt_pb2 as jwt__pb2
+import jwt_pb2 as jwt__pb2
 
 
 class JwtServiceStub(object):
