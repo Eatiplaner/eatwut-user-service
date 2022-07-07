@@ -7,36 +7,30 @@ email = 'eatiplaner01@gmail.com'
 
 
 class TestLoginSignupService(BaseMock):
-    @classmethod
+    @ classmethod
     def setUpClass(cls):
         super().setUpClass()
-        userPassword = User.generate_hash_password(password)
 
         user = User(
-            ID=1,
-            username='eatiplaner01',
-            password=userPassword,
-            first_name='stephen',
-            last_name='jamson',
+            password=password,
+            full_name='Stephen Jamson',
             email=email
         )
         user.save()
 
     def test_find_user_by_credential_with_correct_name(self):
-        result = find_user_by_credential({"username": "eatiplaner01", "password": password})
+        result = find_user_by_credential({"username": "stephen_jamson", "password": password})
 
-        assert result.username == 'eatiplaner01'
-        assert result.first_name == 'stephen'
-        assert result.last_name == 'jamson'
+        assert result.username == 'stephen_jamson'
+        assert result.full_name == 'Stephen Jamson'
         assert result.email == 'eatiplaner01@gmail.com'
         assert result.ID == 1
 
     def test_find_user_by_credential_with_correct_email(self):
-        result = find_user_by_credential({"username": "eatiplaner01", "password": password})
+        result = find_user_by_credential({"email": email, "password": password})
 
-        assert result.username == 'eatiplaner01'
-        assert result.first_name == 'stephen'
-        assert result.last_name == 'jamson'
+        assert result.username == 'stephen_jamson'
+        assert result.full_name == 'Stephen Jamson'
         assert result.email == 'eatiplaner01@gmail.com'
         assert result.ID == 1
 
@@ -49,27 +43,24 @@ class TestLoginSignupService(BaseMock):
         my_password = 'Aa@123456!'
         my_email = "test@gmail.com"
         data = {
-            "username": "username",
             "email": my_email,
             "password": my_password,
-            "first_name": "jame",
-            "last_name": "david"
+            "full_name": "Stephen Jamson",
         }
 
         create_user(data)
         assert User.objects.count() == 2
         my_account = User.objects.get(email=my_email)
 
-        assert my_account.first_name == "jame"
+        assert my_account.full_name == "Stephen Jamson"
+        assert my_account.email == my_email
 
     def test_create_user_with_email_existed(self):
         my_password = 'Aa@123456!'
         data = {
-            "username": "username",
             "email": email,
             "password": my_password,
-            "first_name": "jame",
-            "last_name": "david"
+            "full_name": "Stephen Jamson",
         }
 
         with self.assertRaises(Exception):
