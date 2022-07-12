@@ -12,6 +12,7 @@ from mongoengine import BooleanField, \
     DoesNotExist, signals
 
 from .address import Address
+from .provider import Provider
 
 
 class User(Document):
@@ -27,6 +28,7 @@ class User(Document):
     is_kol = BooleanField()
 
     addresses = ListField(ReferenceField(Address))
+    providers = ListField(ReferenceField(Provider))
 
     meta = {
         'indexes': ['username', 'email']
@@ -78,7 +80,7 @@ class User(Document):
         username = original_username
 
         try:
-            while (True):
+            while True:
                 User.objects.get(username=username)
                 username = f'{original_username}_{secrets.token_hex(3)}'
         except DoesNotExist:
