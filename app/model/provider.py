@@ -2,10 +2,12 @@ import tldextract
 from mongoengine import BooleanField, \
     Document, StringField, signals
 
+TYPEURLS = ['facebook', 'instagram', 'youtube', 'tiktok']
+
 
 class Provider(Document):
     # SCHEMA
-    url = StringField(required=True, unique=True)
+    url = StringField(required=True)
     type = StringField()
     display_on_profile = BooleanField(default=True)
 
@@ -20,11 +22,10 @@ class Provider(Document):
     def generate_type_url(cls, document):
         url_struct = tldextract.extract(document.url)
         domain = url_struct.domain
-        match domain:
-            case ('facebook' | 'instagram' | 'youtube' | 'tiktok') as type_url:
-                document.type = type_url
-            case _:
-                document.type = ""
+        if domain in TYPEURLS:
+            document.type = domain
+        else:
+            document.type = "unknown"
 
 
 signals.pre_save.connect(Provider.pre_save, sender=Provider)

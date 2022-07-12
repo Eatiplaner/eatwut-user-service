@@ -80,7 +80,7 @@ class User(Document):
         username = original_username
 
         try:
-            while (True):
+            while True:
                 User.objects.get(username=username)
                 username = f'{original_username}_{secrets.token_hex(3)}'
         except DoesNotExist:
