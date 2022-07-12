@@ -8,8 +8,9 @@ from unidecode import unidecode
 from app.constants.regex import passwordRegex
 
 from mongoengine import BooleanField, \
-    Document, EmailField, IntField, ListField, ReferenceField, StringField, \
-    DoesNotExist, signals
+    Document, EmailField, IntField, ListField, \
+    ReferenceField, StringField, \
+    DoesNotExist, DateTimeField, signals
 
 from .address import Address
 from .provider import Provider
@@ -24,11 +25,12 @@ class User(Document):
     email = EmailField(required=True, unique=True)
     bio = StringField(max_length=500)
     phone = StringField()
-    birthday = StringField()
+    dob = DateTimeField()
     is_kol = BooleanField()
 
     addresses = ListField(ReferenceField(Address))
     providers = ListField(ReferenceField(Provider))
+    prefer_categories = ListField(StringField())
 
     meta = {
         'indexes': ['username', 'email']
