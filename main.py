@@ -1,4 +1,4 @@
-from app import grpc
+from app.grpc.server import grpc_serve
 from app.main import create_app
 import os
 import unittest
@@ -16,7 +16,7 @@ manager = Manager(app)
 
 @manager.command
 def run():
-    grpc.grpc_serve(os.getenv('GRPC_PORT') or 50051)
+    grpc_serve(os.getenv('GRPC_PORT') or 50051)
 
 
 @manager.command
