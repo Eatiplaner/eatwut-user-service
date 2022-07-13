@@ -3,6 +3,7 @@ from app.model.address import Address
 from app.model.provider import Provider
 from app.services.update_profile import update_profile
 from test import BaseMock
+from test.utils import random_string_specific_length
 from test.setup.data import *
 
 
@@ -51,6 +52,20 @@ class TestUpdateProfileService(BaseMock):
         assert user_updated.addresses[1].type == "office"
         assert len(user_updated.providers) == 2
         assert len(user_updated.prefer_categories) != len(user_pre_update.prefer_categories)
+
+    def test_update_profile_with_not_found_user_id(self):
+        with self.assertRaises(Exception):
+            User.objects.get(ID=2)
+
+    def test_update_profile_with_invalid_params(self):
+        data_update = {
+            "username": random_string_specific_length(31),
+            "bio": random_string_specific_length(501),
+            "dob": "1998/05/07",
+        }
+
+        with self.assertRaises(Exception):
+            user_updated = update_profile(1, data_update)
 
     def test_update_profile_with_missing_params(self):
         my_address = {
