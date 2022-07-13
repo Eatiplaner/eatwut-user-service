@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import jwt_pb2 as jwt__pb2
+from app.grpc.generated import jwt_pb2 as app_dot_grpc_dot_generated_dot_jwt__pb2
 
 
 class JwtServiceStub(object):
@@ -16,8 +16,8 @@ class JwtServiceStub(object):
         """
         self.ValidToken = channel.unary_unary(
                 '/auth.JwtService/ValidToken',
-                request_serializer=jwt__pb2.ValidRequest.SerializeToString,
-                response_deserializer=jwt__pb2.ValidResponse.FromString,
+                request_serializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidRequest.SerializeToString,
+                response_deserializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_JwtServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ValidToken': grpc.unary_unary_rpc_method_handler(
                     servicer.ValidToken,
-                    request_deserializer=jwt__pb2.ValidRequest.FromString,
-                    response_serializer=jwt__pb2.ValidResponse.SerializeToString,
+                    request_deserializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidRequest.FromString,
+                    response_serializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class JwtService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/auth.JwtService/ValidToken',
-            jwt__pb2.ValidRequest.SerializeToString,
-            jwt__pb2.ValidResponse.FromString,
+            app_dot_grpc_dot_generated_dot_jwt__pb2.ValidRequest.SerializeToString,
+            app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

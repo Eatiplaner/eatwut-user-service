@@ -1,7 +1,7 @@
 import grpc
 from concurrent import futures
 
-from app.grpc.rpc_pb import login_signup_pb2, login_signup_pb2_grpc
+from app.grpc.generated import login_signup_pb2, login_signup_pb2_grpc
 from app.grpc.services.login_signup import LoginSignupService
 
 from grpc_reflection.v1alpha import reflection

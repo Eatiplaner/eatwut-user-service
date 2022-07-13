@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import app.grpc.rpc_pb.login_signup_pb2 as login__signup__pb2
+from app.grpc.generated import login_signup_pb2 as app_dot_grpc_dot_generated_dot_login__signup__pb2
 
 
 class LoginSignupServiceStub(object):
@@ -16,13 +16,13 @@ class LoginSignupServiceStub(object):
         """
         self.FindUserByCredential = channel.unary_unary(
             '/user.LoginSignupService/FindUserByCredential',
-            request_serializer=login__signup__pb2.FindUserRequest.SerializeToString,
-            response_deserializer=login__signup__pb2.UserResponse.FromString,
+            request_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.SerializeToString,
+            response_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
         )
         self.CreateUser = channel.unary_unary(
             '/user.LoginSignupService/CreateUser',
-            request_serializer=login__signup__pb2.CreateRequest.SerializeToString,
-            response_deserializer=login__signup__pb2.UserResponse.FromString,
+            request_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.SerializeToString,
+            response_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
         )
 
 
@@ -46,13 +46,13 @@ def add_LoginSignupServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
         'FindUserByCredential': grpc.unary_unary_rpc_method_handler(
             servicer.FindUserByCredential,
-            request_deserializer=login__signup__pb2.FindUserRequest.FromString,
-            response_serializer=login__signup__pb2.UserResponse.SerializeToString,
+            request_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.FromString,
+            response_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.SerializeToString,
         ),
         'CreateUser': grpc.unary_unary_rpc_method_handler(
             servicer.CreateUser,
-            request_deserializer=login__signup__pb2.CreateRequest.FromString,
-            response_serializer=login__signup__pb2.UserResponse.SerializeToString,
+            request_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.FromString,
+            response_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -77,8 +77,8 @@ class LoginSignupService(object):
                              timeout=None,
                              metadata=None):
         return grpc.experimental.unary_unary(request, target, '/user.LoginSignupService/FindUserByCredential',
-                                             login__signup__pb2.FindUserRequest.SerializeToString,
-                                             login__signup__pb2.UserResponse.FromString,
+                                             app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.SerializeToString,
+                                             app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
                                              options, channel_credentials,
                                              insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -94,7 +94,7 @@ class LoginSignupService(object):
                    timeout=None,
                    metadata=None):
         return grpc.experimental.unary_unary(request, target, '/user.LoginSignupService/CreateUser',
-                                             login__signup__pb2.CreateRequest.SerializeToString,
-                                             login__signup__pb2.UserResponse.FromString,
+                                             app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.SerializeToString,
+                                             app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
                                              options, channel_credentials,
                                              insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -4,5 +4,5 @@ __pycache__
 node_modules
 .pnpm-debug.log
 .idea
-app/grpc/pb/*.proto
+app/grpc/generated/*.proto
 bin/pws
