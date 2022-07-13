@@ -1,15 +1,16 @@
-import random
-
-
-letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
-           "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ]
+from random import sample, choice
+from string import ascii_letters
 
 
 def random_email():
     email = ''
     for _ in range(7):
-        letter = random.sample(letters, 1)[0]
+        letter = sample(choice(ascii_letters), 1)[0]
         email += letter
 
     email += '@gmail.com'
     return email
+
+
+def random_string_specific_length(length):
+    return ''.join(choice(ascii_letters) for i in range(length))

@@ -1,19 +1,17 @@
 from app.model.user import User
 from app.services.login_signup import create_user, find_user_by_credential
 from test import BaseMock
-
-password = "eatiplaner01!123"
-email = 'eatiplaner01@gmail.com'
+from test.setup.data import full_name, password, email
 
 
 class TestLoginSignupService(BaseMock):
-    @ classmethod
+    @classmethod
     def setUpClass(cls):
         super().setUpClass()
 
         user = User(
             password=password,
-            full_name='Stephen Jamson',
+            full_name=full_name,
             email=email
         )
         user.save()
@@ -45,7 +43,7 @@ class TestLoginSignupService(BaseMock):
         data = {
             "email": my_email,
             "password": my_password,
-            "full_name": "Stephen Jamson",
+            "full_name": full_name,
         }
 
         create_user(data)
@@ -60,7 +58,7 @@ class TestLoginSignupService(BaseMock):
         data = {
             "email": email,
             "password": my_password,
-            "full_name": "Stephen Jamson",
+            "full_name": full_name,
         }
 
         with self.assertRaises(Exception):
