@@ -2,6 +2,7 @@ source: Eatiplan-Project/eatiplan-grpc-proto
 branch: main
 outpb: app/grpc/pb
 outdir: app/grpc/rpc_pb
+syspath: app.grpc.rpc_pb
 token_key: GH_PROTO_REPO_TOKEN
 dependencies:
   - auth/jwt

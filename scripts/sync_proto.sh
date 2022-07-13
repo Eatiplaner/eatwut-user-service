@@ -11,6 +11,7 @@ source=$(yq .source $proto_yaml_file)
 branch=$(yq .branch $proto_yaml_file)
 outpb=$(yq .outpb $proto_yaml_file)
 outdir=$(yq .outdir $proto_yaml_file)
+syspath=$(yq .syspath $proto_yaml_file)
 token_key=$(printenv $(yq .token_key $proto_yaml_file))
 dependencies=$(yq .dependencies $proto_yaml_file)
 
@@ -48,4 +49,6 @@ while IFS= read -r value; do
   )
 
   $($formatted_command)
+
+  sed -i "5s/import /import $syspath./g" $outdir/$name"_pb2_grpc.py";
 done < <(yq eval '.dependencies' $proto_yaml_file)
