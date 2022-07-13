@@ -1,21 +1,22 @@
 import grpc
 from app.grpc.client import grpc_channel
-from app.grpc.generated import jwt_pb2_grpc
+from app.grpc.generated import jwt_pb2_grpc, jwt_pb2
 
 
 def authenticated(func):
     def inner(self, request, context):
-        stub = jwt_pb2_grpc.JwtServiceStub(grpc_channel())
+        with grpc_channel() as channel:
+            stub = jwt_pb2_grpc.JwtServiceStub(channel)
 
-        try:
-            response = stub.ValidToken(_authorization_key(context))
+            try:
+                response = stub.ValidToken(jwt_pb2.ValidRequest(**{"token": _authorization_key(context)}))
 
-            if response.Result is True:
-                return func(self, request, context)
-            else:
-                raise Exception()
-        except Exception:
-            raise grpc.RpcError(grpc.StatusCode.UNAUTHENTICATED)
+                if response.valid is True:
+                    return func(self, request, context)
+                else:
+                    raise Exception()
+            except Exception:
+                raise grpc.RpcError(grpc.StatusCode.UNAUTHENTICATED)
 
     return inner
 

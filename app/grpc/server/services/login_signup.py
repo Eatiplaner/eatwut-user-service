@@ -1,11 +1,13 @@
 import grpc
 
 from google.protobuf.json_format import MessageToDict
+from app.grpc.client.decorators.auth import authenticated
 from app.grpc.generated import login_signup_pb2_grpc, login_signup_pb2
 from app.services.login_signup import create_user, find_user_by_credential
 
 
 class LoginSignupService(login_signup_pb2_grpc.LoginSignupService):
+    @authenticated
     def CreateUser(self, request, context):
         try:
             user = create_user(MessageToDict(request))
