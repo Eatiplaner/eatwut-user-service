@@ -51,3 +51,20 @@ class TestUpdateProfileService(BaseMock):
         assert user_updated.addresses[1].type == "office"
         assert len(user_updated.providers) == 2
         assert len(user_updated.prefer_categories) != len(user_pre_update.prefer_categories)
+
+    def test_update_profile_with_missing_params(self):
+        my_address = {
+            "district": "District 1",
+            "city": "Ho Chi Minh City"
+        }
+        my_provider = {
+            "display_on_profile": False
+        }
+
+        data_update = {
+            "addresses": [my_address],
+            "providers": [my_provider]
+        }
+
+        with self.assertRaises(Exception):
+            update_profile(1, data_update)
