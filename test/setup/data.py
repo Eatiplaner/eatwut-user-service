@@ -10,40 +10,40 @@ is_kol = True
 
 # Address
 address1 = {
-    "district": "",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "type": ""
+    "district": "District 1",
+    "city": "Ho Chi Minh City",
+    "lat": "10.83",
+    "lng": "106.65",
+    "type": "home"
 }
 
-address2 = {
-    "district": "",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "type": ""
+address2= {
+    "district": "District 2",
+    "city": "Ho Chi Minh City",
+    "lat": "10.83",
+    "lng": "106.65",
+    "type": "office"
 }
 
 # Provider
-provider1 = {
-    "url": "",
-    "display_on_profile": ""
+provider_facebook = {
+    "url": "https://www.facebook.com/bavuongdaradi.3990",
+    "display_on_profile": True
 }
 
-provider2 = {
-    "url": "",
-    "display_on_profile": ""
+provider_youtube = {
+    "url": "https://www.youtube.com/channel/UCctlr1pyEUxjXKbLwa0Xz4A",
+    "display_on_profile": True
 }
 
-provider3 = {
-    "url": "",
-    "display_on_profile": ""
+provider_tiktok = {
+    "url": "https://vt.tiktok.com/ZSReaombM/",
+    "display_on_profile": True
 }
 
-provider4 = {
-    "url": "",
-    "display_on_profile": ""
+provider_instagram = {
+    "url": "https://instagram.com/im.khoms/",
+    "display_on_profile": True
 }
 
 # Prefer categories

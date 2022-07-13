@@ -1,5 +1,7 @@
 from app.model.provider import Provider
 from test import BaseMock
+from test.setup.data import provider_facebook, provider_youtube, \
+    provider_instagram, provider_tiktok
 
 
 class TestProviderModel(BaseMock):
@@ -13,44 +15,32 @@ class TestProviderModel(BaseMock):
         assert provider.type == "unknown"
 
     def test_create_provider_with_facebook_url(self):
-        provider_facebook = Provider(
-            url="https://www.facebook.com/bavuongdaradi.3990",
-            display_on_profile=True
-        )
-        provider_facebook.save()
+        provider_fb = Provider(**provider_facebook)
+        provider_fb.save()
 
         # Check Generated type of url
-        assert provider_facebook.type == "facebook"
+        assert provider_fb.type == "facebook"
 
     def test_create_provider_with_youtube_url(self):
-        provider_youtube = Provider(
-            url="https://www.youtube.com/channel/UCctlr1pyEUxjXKbLwa0Xz4A",
-            display_on_profile=True
-        )
-        provider_youtube.save()
+        provider_ytb = Provider(**provider_youtube)
+        provider_ytb.save()
 
         # Check Generated type of url
-        assert provider_youtube.type == "youtube"
+        assert provider_ytb.type == "youtube"
 
     def test_create_provider_with_tiktok_url(self):
-        provider_tiktok = Provider(
-            url="https://vt.tiktok.com/ZSReaombM/",
-            display_on_profile=True
-        )
-        provider_tiktok.save()
+        provider_tt = Provider(**provider_tiktok)
+        provider_tt.save()
 
         # Check Generated type of url
-        assert provider_tiktok.type == "tiktok"
+        assert provider_tt.type == "tiktok"
 
     def test_create_provider_with_instagram_url(self):
-        provider_instagram = Provider(
-            url="https://instagram.com/im.khoms/",
-            display_on_profile=True
-        )
-        provider_instagram.save()
+        provider_insta = Provider(**provider_instagram)
+        provider_insta.save()
 
         # Check Generated type of url
-        assert provider_instagram.type == "instagram"
+        assert provider_insta.type == "instagram"
 
     def test_create_provider_with_missing_fields(self):
         with self.assertRaises(Exception):
