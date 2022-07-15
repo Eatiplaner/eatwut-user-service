@@ -4,8 +4,10 @@ import bcrypt
 import re
 
 from unidecode import unidecode
+from functools import reduce
 
 from app.constants.regex import passwordRegex
+from app.constants.date import dateTimeFormat
 
 from mongoengine import BooleanField, \
     Document, EmailField, IntField, ListField, \
@@ -48,10 +50,12 @@ class User(Document):
     def proto_data(self):
         data = json.loads(self.to_json())
         data['id'] = self.ID
+        data['dob'] = self.dob.strftime(dateTimeFormat)
+        data['providers'] = list(map(lambda provider: provider.proto_data(), self.providers))
+        data['addresses'] = list(map(lambda address: address.proto_data(), self.addresses))
 
         del data['_id']
         del data['ID']
-        del data['addresses']
         del data['password']
 
         return data

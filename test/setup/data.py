@@ -17,7 +17,7 @@ address1 = {
     "type": "home"
 }
 
-address2= {
+address2 = {
     "district": "District 2",
     "city": "Ho Chi Minh City",
     "lat": "10.83",

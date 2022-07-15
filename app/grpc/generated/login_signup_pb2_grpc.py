@@ -15,15 +15,15 @@ class LoginSignupServiceStub(object):
             channel: A grpc.Channel.
         """
         self.FindUserByCredential = channel.unary_unary(
-            '/user.LoginSignupService/FindUserByCredential',
-            request_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.SerializeToString,
-            response_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
-        )
+                '/user.LoginSignupService/FindUserByCredential',
+                request_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.SerializeToString,
+                response_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
+                )
         self.CreateUser = channel.unary_unary(
-            '/user.LoginSignupService/CreateUser',
-            request_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.SerializeToString,
-            response_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
-        )
+                '/user.LoginSignupService/CreateUser',
+                request_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.SerializeToString,
+                response_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
+                )
 
 
 class LoginSignupServiceServicer(object):
@@ -44,57 +44,56 @@ class LoginSignupServiceServicer(object):
 
 def add_LoginSignupServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'FindUserByCredential': grpc.unary_unary_rpc_method_handler(
-            servicer.FindUserByCredential,
-            request_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.FromString,
-            response_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.SerializeToString,
-        ),
-        'CreateUser': grpc.unary_unary_rpc_method_handler(
-            servicer.CreateUser,
-            request_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.FromString,
-            response_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.SerializeToString,
-        ),
+            'FindUserByCredential': grpc.unary_unary_rpc_method_handler(
+                    servicer.FindUserByCredential,
+                    request_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.FromString,
+                    response_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.SerializeToString,
+            ),
+            'CreateUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateUser,
+                    request_deserializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.FromString,
+                    response_serializer=app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        'user.LoginSignupService', rpc_method_handlers)
+            'user.LoginSignupService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
+
  # This class is part of an EXPERIMENTAL API.
-
-
 class LoginSignupService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def FindUserByCredential(request,
-                             target,
-                             options=(),
-                             channel_credentials=None,
-                             call_credentials=None,
-                             insecure=False,
-                             compression=None,
-                             wait_for_ready=None,
-                             timeout=None,
-                             metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(request, target, '/user.LoginSignupService/FindUserByCredential',
-                                             app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.SerializeToString,
-                                             app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
-                                             options, channel_credentials,
-                                             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            app_dot_grpc_dot_generated_dot_login__signup__pb2.FindUserRequest.SerializeToString,
+            app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CreateUser(request,
-                   target,
-                   options=(),
-                   channel_credentials=None,
-                   call_credentials=None,
-                   insecure=False,
-                   compression=None,
-                   wait_for_ready=None,
-                   timeout=None,
-                   metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(request, target, '/user.LoginSignupService/CreateUser',
-                                             app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.SerializeToString,
-                                             app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
-                                             options, channel_credentials,
-                                             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            app_dot_grpc_dot_generated_dot_login__signup__pb2.CreateRequest.SerializeToString,
+            app_dot_grpc_dot_generated_dot_login__signup__pb2.UserResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
