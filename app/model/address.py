@@ -2,6 +2,8 @@ import json
 
 from mongoengine import Document, IntField, StringField, signals
 
+from app.model.concerns.generatable_id import auto_increment_id
+
 
 class Address(Document):
     ID = IntField(min_value=1, unique=True)
@@ -25,12 +27,9 @@ class Address(Document):
 
     # CALLBACKS
     @classmethod
+    @auto_increment_id
     def pre_save(cls, sender, document, **kwargs):
-        cls.generate_ID(document)
-
-    @classmethod
-    def generate_ID(cls, document):
-        document.ID = Address.objects.count() + 1
+        return None
 
 
 signals.pre_save.connect(Address.pre_save, sender=Address)

@@ -4,6 +4,8 @@ import tldextract
 from mongoengine import BooleanField, \
     Document, IntField, StringField, signals
 
+from app.model.concerns.generatable_id import auto_increment_id
+
 TYPEURLS = ['facebook', 'instagram', 'youtube', 'tiktok']
 
 
@@ -28,8 +30,8 @@ class Provider(Document):
 
     # CALLBACKS
     @classmethod
+    @auto_increment_id
     def pre_save(cls, sender, document, **kwargs):
-        cls.generate_ID(document)
         cls.generate_type_url(document)
 
     @classmethod
@@ -40,10 +42,6 @@ class Provider(Document):
             document.type = domain
         else:
             document.type = "unknown"
-
-    @classmethod
-    def generate_ID(cls, document):
-        document.ID = Provider.objects.count() + 1
 
 
 signals.pre_save.connect(Provider.pre_save, sender=Provider)

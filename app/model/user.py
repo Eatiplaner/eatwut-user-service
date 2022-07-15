@@ -4,7 +4,6 @@ import bcrypt
 import re
 
 from unidecode import unidecode
-from functools import reduce
 
 from app.constants.regex import passwordRegex
 from app.constants.date import dateTimeFormat
@@ -13,6 +12,8 @@ from mongoengine import BooleanField, \
     Document, EmailField, IntField, ListField, \
     ReferenceField, StringField, \
     DoesNotExist, DateTimeField, signals
+
+from app.model.concerns.generatable_id import auto_increment_id
 
 from .address import Address
 from .provider import Provider
@@ -67,8 +68,8 @@ class User(Document):
 
     # CALLBACKS
     @classmethod
+    @auto_increment_id
     def pre_save(cls, sender, document, **kwargs):
-        cls.generate_ID(document)
         cls.generate_username(document)
         cls.generate_hash_password(document)
 
@@ -91,10 +92,6 @@ class User(Document):
                 username = f'{original_username}_{secrets.token_hex(3)}'
         except DoesNotExist:
             document.username = username
-
-    @classmethod
-    def generate_ID(cls, document):
-        document.ID = User.objects.count() + 1
 
 
 signals.pre_save.connect(User.pre_save, sender=User)
