@@ -6,11 +6,14 @@ import re
 from unidecode import unidecode
 
 from app.constants.regex import passwordRegex
+from app.constants.date import dateTimeFormat
 
 from mongoengine import BooleanField, \
     Document, EmailField, IntField, ListField, \
     ReferenceField, StringField, \
     DoesNotExist, DateTimeField, signals
+
+from app.model.concerns.generatable_id import auto_increment_id
 
 from .address import Address
 from .provider import Provider
@@ -48,10 +51,12 @@ class User(Document):
     def proto_data(self):
         data = json.loads(self.to_json())
         data['id'] = self.ID
+        data['dob'] = self.dob.strftime(dateTimeFormat)
+        data['providers'] = list(map(lambda provider: provider.proto_data(), self.providers))
+        data['addresses'] = list(map(lambda address: address.proto_data(), self.addresses))
 
         del data['_id']
         del data['ID']
-        del data['addresses']
         del data['password']
 
         return data
@@ -63,8 +68,8 @@ class User(Document):
 
     # CALLBACKS
     @classmethod
+    @auto_increment_id
     def pre_save(cls, sender, document, **kwargs):
-        cls.generate_ID(document)
         cls.generate_username(document)
         cls.generate_hash_password(document)
 
@@ -87,10 +92,6 @@ class User(Document):
                 username = f'{original_username}_{secrets.token_hex(3)}'
         except DoesNotExist:
             document.username = username
-
-    @classmethod
-    def generate_ID(cls, document):
-        document.ID = User.objects.count() + 1
 
 
 signals.pre_save.connect(User.pre_save, sender=User)
