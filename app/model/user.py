@@ -30,6 +30,7 @@ class User(Document):
     phone = StringField()
     dob = DateTimeField()
     is_kol = BooleanField()
+    last_login = DateTimeField()
 
     addresses = ListField(ReferenceField(Address))
     providers = ListField(ReferenceField(Provider))
@@ -56,6 +57,9 @@ class User(Document):
 
         if self.dob is not None:
             data['dob'] = self.dob.strftime(dateTimeFormat)
+
+        if self.last_login is not None:
+            data['last_login'] = self.last_login.strftime(dateTimeFormat)
 
         del data['_id']
         del data['ID']

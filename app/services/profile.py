@@ -22,6 +22,9 @@ def update_profile(**kwargs):
     if "dob" in data:
         data["dob"] = datetime.strptime(data["dob"], dateTimeFormat)
 
+    if "last_login" in data:
+        data["last_login"] = datetime.strptime(data["last_login"], dateTimeFormat)
+
     user = User.objects.get(ID=user_id)
     user.update(**data)
 

@@ -31,7 +31,7 @@ class TestUpdateProfileService(BaseMock):
         data_update = {
             "username": "stephen_jamson_differ",
             "bio": "It's my Faliur",
-            "dob": "06-05-1998",
+            "dob": "06-05-1998 00:00:00",
             "phone": "0123456789",
             "is_kol": True,
             "addresses": [address1, address2],
