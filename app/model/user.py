@@ -51,9 +51,11 @@ class User(Document):
     def proto_data(self):
         data = json.loads(self.to_json())
         data['id'] = self.ID
-        data['dob'] = self.dob.strftime(dateTimeFormat)
         data['providers'] = list(map(lambda provider: provider.proto_data(), self.providers))
         data['addresses'] = list(map(lambda address: address.proto_data(), self.addresses))
+
+        if self.dob is not None:
+            data['dob'] = self.dob.strftime(dateTimeFormat)
 
         del data['_id']
         del data['ID']
