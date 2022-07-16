@@ -5,7 +5,8 @@ from app.model.provider import Provider
 from app.services.profile import update_profile
 from test import BaseMock
 from test.utils import random_string_specific_length
-from test.setup.data import *
+from test.setup.data import full_name, email, password, \
+    address1, address2, provider_tiktok, provider_youtube, provider_facebook
 
 
 class TestUpdateProfileService(BaseMock):
@@ -65,7 +66,7 @@ class TestUpdateProfileService(BaseMock):
         }
 
         with self.assertRaises(Exception):
-            user_updated = update_profile(user_id=1, data=data_update)
+            update_profile(user_id=1, data=data_update)
 
     def test_update_profile_with_missing_params(self):
         my_address = {
