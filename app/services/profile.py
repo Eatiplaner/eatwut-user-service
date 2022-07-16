@@ -1,8 +1,9 @@
-from mongoengine import Q
+from datetime import datetime
 from app.model.address import Address
 from app.model.provider import Provider
 from app.model.user import User
 from .concerns.data_manipulate import convert_array_to_class
+from app.constants.date import dateTimeFormat
 
 
 def update_profile(**kwargs):
@@ -16,6 +17,9 @@ def update_profile(**kwargs):
     if "providers" in data:
         providers_data = data["providers"]
         data["providers"] = convert_array_to_class(providers_data, Provider)
+
+    if "dob" in data:
+        data["dob"] = datetime.strptime(data["dob"], dateTimeFormat)
 
     user = User.objects.get(ID=user_id)
     user.update(**data)
