@@ -9,6 +9,7 @@ from app.services.profile import update_profile
 
 
 class ProfileService(profile_pb2_grpc.ProfileService):
+    @authenticated
     def UpdateProfile(self, request, context):
         try:
             user = update_profile(user_id=request.id, data=MessageToDict(request.data))
