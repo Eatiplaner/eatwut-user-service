@@ -1,1 +1,1 @@
-dateTimeFormat = "%m-%d-%Y"
+dateTimeFormat = "%d-%m-%Y %H:%M:%S"
