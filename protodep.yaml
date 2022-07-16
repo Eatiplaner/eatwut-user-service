@@ -6,4 +6,5 @@ token_key: GH_PROTO_REPO_TOKEN
 dependencies:
   - auth/jwt
   - user/login_signup
+  - user/profile
 command: python -m grpc_tools.protoc --proto_path=. --python_out=. --grpc_python_out=. $outdir/$dependency.proto

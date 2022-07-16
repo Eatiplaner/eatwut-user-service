@@ -2,7 +2,10 @@ import grpc
 from concurrent import futures
 
 from app.grpc.generated import login_signup_pb2, login_signup_pb2_grpc
+from app.grpc.generated import profile_pb2_grpc, profile_pb2
+
 from .services.login_signup import LoginSignupService
+from .services.profile import ProfileService
 
 from grpc_reflection.v1alpha import reflection
 
@@ -11,9 +14,11 @@ def grpc_serve(grpc_port):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
     login_signup_pb2_grpc.add_LoginSignupServiceServicer_to_server(LoginSignupService(), server)
+    profile_pb2_grpc.add_ProfileServiceServicer_to_server(ProfileService(), server)
 
     SERVICE_NAMES = (
         login_signup_pb2.DESCRIPTOR.services_by_name["LoginSignupService"].full_name,
+        profile_pb2.DESCRIPTOR.services_by_name["ProfileService"].full_name,
         reflection.SERVICE_NAME
     )
 
