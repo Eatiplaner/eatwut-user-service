@@ -1,7 +1,6 @@
 from app.model.user import User
 from test import BaseMock
 from test.utils import random_email
-from datetime import datetime
 
 
 class TestUserModel(BaseMock):

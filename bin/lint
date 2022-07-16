@@ -1,6 +1,3 @@
 #!/bin/bash
 
-virtualenv env
-source env/bin/activate
-
-flake8 *.py
+flake8
