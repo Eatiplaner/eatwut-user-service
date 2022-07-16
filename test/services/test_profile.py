@@ -20,13 +20,8 @@ class TestUpdateProfileService(BaseMock):
             password=password,
             full_name=full_name,
             email=email,
-            bio=bio,
-            dob=dob,
-            phone=phone,
-            is_kol=is_kol,
             addresses=[addresses],
-            providers=[providers],
-            prefer_categories=prefer_categories
+            providers=[providers]
         )
         user.save()
 
@@ -35,9 +30,9 @@ class TestUpdateProfileService(BaseMock):
         data_update = {
             "username": "stephen_jamson_differ",
             "bio": "It's my Faliur",
-            "dob": datetime(1998, 5, 7),
+            "dob": "06-05-1998",
             "phone": "0123456789",
-            "is_kol": False,
+            "is_kol": True,
             "addresses": [address1, address2],
             "providers": [provider_youtube, provider_tiktok],
             "prefer_categories": ["3", "4", "5", "6"]

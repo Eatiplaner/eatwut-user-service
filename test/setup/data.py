@@ -1,12 +1,6 @@
-from datetime import datetime
-
 full_name = "Stephen Jamson"
 password = "eatiplaner01!123"
 email = 'eatiplaner01@gmail.com'
-bio = "It's my fault"
-dob = datetime(1998, 5, 6)
-phone = "0815985051"
-is_kol = True
 
 # Address
 address1 = {
