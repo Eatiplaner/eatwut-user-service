@@ -1,3 +1,4 @@
+from mongoengine import DoesNotExist
 from app.model.user import User
 from app.model.address import Address
 from app.model.provider import Provider
@@ -41,7 +42,7 @@ class TestUpdateProfileService(BaseMock):
             "providers": [provider_youtube, provider_tiktok],
             "prefer_categories": ["3", "4", "5", "6"]
         }
-        user_updated = update_profile(1, data_update)
+        user_updated = update_profile(user_id=1, data=data_update)
 
         assert user_updated.username != user_pre_update.username
         assert user_updated.bio != user_pre_update.bio
@@ -53,9 +54,13 @@ class TestUpdateProfileService(BaseMock):
         assert len(user_updated.providers) == 2
         assert len(user_updated.prefer_categories) != len(user_pre_update.prefer_categories)
 
+        # TODO: make sure old address and provider has been removed
+        # assert Address.objects.count() == 2
+        # assert Provider.objects.count() == 2
+
     def test_update_profile_with_not_found_user_id(self):
-        with self.assertRaises(Exception):
-            User.objects.get(ID=2)
+        with self.assertRaises(DoesNotExist):
+            update_profile(user_id=2, data={})
 
     def test_update_profile_with_invalid_params(self):
         data_update = {
@@ -65,7 +70,7 @@ class TestUpdateProfileService(BaseMock):
         }
 
         with self.assertRaises(Exception):
-            user_updated = update_profile(1, data_update)
+            user_updated = update_profile(user_id=1, data=data_update)
 
     def test_update_profile_with_missing_params(self):
         my_address = {
@@ -82,4 +87,4 @@ class TestUpdateProfileService(BaseMock):
         }
 
         with self.assertRaises(Exception):
-            update_profile(1, data_update)
+            update_profile(user_id=1, data=data_update)
