@@ -20,10 +20,10 @@ def update_profile(**kwargs):
         data["providers"] = convert_array_to_class(providers_data, Provider)
 
     if "dob" in data:
-        data["dob"] = datetime.strptime(data["dob"], dateTimeFormat)
+        data["dob"] = data["dob"] and datetime.strptime(data["dob"], dateTimeFormat) or None
 
     if "last_login" in data:
-        data["last_login"] = datetime.strptime(data["last_login"], dateTimeFormat)
+        data["last_login"] = data["last_login"] and datetime.strptime(data["last_login"], dateTimeFormat) or None
 
     user = User.objects.get(ID=user_id)
     user.update(**data)
