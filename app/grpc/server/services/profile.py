@@ -12,7 +12,10 @@ class ProfileService(profile_pb2_grpc.ProfileService):
     @authenticated
     def UpdateProfile(self, request, context):
         try:
-            user = update_profile(user_id=request.id, data=MessageToDict(request.data))
+            user = update_profile(
+                user_id=context.user_id,
+                data=MessageToDict(request.data)
+            )
 
             return profile_pb2.UpdateProfileResponse(**user.proto_data())
         except DoesNotExist as e:
