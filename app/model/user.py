@@ -28,6 +28,7 @@ class User(Document):
     email = EmailField(required=True, unique=True)
     bio = StringField(max_length=500)
     phone = StringField()
+    gender = StringField()
     dob = DateTimeField()
     is_kol = BooleanField()
     last_login = DateTimeField()
