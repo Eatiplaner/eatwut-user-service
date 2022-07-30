@@ -32,6 +32,7 @@ class User(Document):
     dob = DateTimeField()
     is_kol = BooleanField()
     last_login = DateTimeField()
+    is_active = BooleanField()
 
     addresses = ListField(ReferenceField(Address))
     providers = ListField(ReferenceField(Provider))
