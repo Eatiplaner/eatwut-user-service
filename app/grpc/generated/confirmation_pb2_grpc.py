@@ -3,6 +3,7 @@
 import grpc
 
 from app.grpc.generated import confirmation_pb2 as app_dot_grpc_dot_generated_dot_confirmation__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class ConfirmationServiceStub(object):
@@ -24,6 +25,11 @@ class ConfirmationServiceStub(object):
                 request_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationReq.SerializeToString,
                 response_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationResp.FromString,
                 )
+        self.ActiveUser = channel.unary_unary(
+                '/user.ConfirmationService/ActiveUser',
+                request_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.ActiveUserReq.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
 
 
 class ConfirmationServiceServicer(object):
@@ -41,6 +47,12 @@ class ConfirmationServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ActiveUser(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ConfirmationServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -53,6 +65,11 @@ def add_ConfirmationServiceServicer_to_server(servicer, server):
                     servicer.CheckActivation,
                     request_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationReq.FromString,
                     response_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationResp.SerializeToString,
+            ),
+            'ActiveUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.ActiveUser,
+                    request_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.ActiveUserReq.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -95,5 +112,22 @@ class ConfirmationService(object):
         return grpc.experimental.unary_unary(request, target, '/user.ConfirmationService/CheckActivation',
             app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationReq.SerializeToString,
             app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ActiveUser(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/user.ConfirmationService/ActiveUser',
+            app_dot_grpc_dot_generated_dot_confirmation__pb2.ActiveUserReq.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
