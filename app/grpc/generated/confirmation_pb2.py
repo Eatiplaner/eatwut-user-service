@@ -12,10 +12,9 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%app/grpc/generated/confirmation.proto\x12\x04user\x1a\x1bgoogle/protobuf/empty.proto\",\n\x14\x46indUserIdByEmailReq\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\"#\n\x15\x46indUserIdByEmailResp\x12\n\n\x02id\x18\x01 \x01(\x04\".\n\x12\x43heckActivationReq\x12\x18\n\x07user_id\x18\x01 \x01(\x04R\x07user_id\"(\n\x13\x43heckActivationResp\x12\x11\n\tis_active\x18\x01 \x01(\x08\x32\xef\x01\n\x13\x43onfirmationService\x12N\n\x11\x46indUserIdByEmail\x12\x1a.user.FindUserIdByEmailReq\x1a\x1b.user.FindUserIdByEmailResp\"\x00\x12>\n\nActiveUser\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\"\x00\x12H\n\x0f\x43heckActivation\x12\x18.user.CheckActivationReq\x1a\x19.user.CheckActivationResp\"\x00\x42\x13Z\x11./app/grpc/rpc_pbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%app/grpc/generated/confirmation.proto\x12\x04user\",\n\x14\x46indUserIdByEmailReq\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\"#\n\x15\x46indUserIdByEmailResp\x12\n\n\x02id\x18\x01 \x01(\x04\".\n\x12\x43heckActivationReq\x12\x18\n\x07user_id\x18\x01 \x01(\x04R\x07user_id\"(\n\x13\x43heckActivationResp\x12\x11\n\tis_active\x18\x01 \x01(\x08\x32\xaf\x01\n\x13\x43onfirmationService\x12N\n\x11\x46indUserIdByEmail\x12\x1a.user.FindUserIdByEmailReq\x1a\x1b.user.FindUserIdByEmailResp\"\x00\x12H\n\x0f\x43heckActivation\x12\x18.user.CheckActivationReq\x1a\x19.user.CheckActivationResp\"\x00\x42\x13Z\x11./app/grpc/rpc_pbb\x06proto3')
 
 
 
@@ -56,14 +55,14 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\021./app/grpc/rpc_pb'
-  _FINDUSERIDBYEMAILREQ._serialized_start=76
-  _FINDUSERIDBYEMAILREQ._serialized_end=120
-  _FINDUSERIDBYEMAILRESP._serialized_start=122
-  _FINDUSERIDBYEMAILRESP._serialized_end=157
-  _CHECKACTIVATIONREQ._serialized_start=159
-  _CHECKACTIVATIONREQ._serialized_end=205
-  _CHECKACTIVATIONRESP._serialized_start=207
-  _CHECKACTIVATIONRESP._serialized_end=247
-  _CONFIRMATIONSERVICE._serialized_start=250
-  _CONFIRMATIONSERVICE._serialized_end=489
+  _FINDUSERIDBYEMAILREQ._serialized_start=47
+  _FINDUSERIDBYEMAILREQ._serialized_end=91
+  _FINDUSERIDBYEMAILRESP._serialized_start=93
+  _FINDUSERIDBYEMAILRESP._serialized_end=128
+  _CHECKACTIVATIONREQ._serialized_start=130
+  _CHECKACTIVATIONREQ._serialized_end=176
+  _CHECKACTIVATIONRESP._serialized_start=178
+  _CHECKACTIVATIONRESP._serialized_end=218
+  _CONFIRMATIONSERVICE._serialized_start=221
+  _CONFIRMATIONSERVICE._serialized_end=396
 # @@protoc_insertion_point(module_scope)

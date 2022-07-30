@@ -3,7 +3,6 @@
 import grpc
 
 from app.grpc.generated import confirmation_pb2 as app_dot_grpc_dot_generated_dot_confirmation__pb2
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class ConfirmationServiceStub(object):
@@ -20,11 +19,6 @@ class ConfirmationServiceStub(object):
                 request_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailReq.SerializeToString,
                 response_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailResp.FromString,
                 )
-        self.ActiveUser = channel.unary_unary(
-                '/user.ConfirmationService/ActiveUser',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                )
         self.CheckActivation = channel.unary_unary(
                 '/user.ConfirmationService/CheckActivation',
                 request_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationReq.SerializeToString,
@@ -36,12 +30,6 @@ class ConfirmationServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def FindUserIdByEmail(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ActiveUser(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -60,11 +48,6 @@ def add_ConfirmationServiceServicer_to_server(servicer, server):
                     servicer.FindUserIdByEmail,
                     request_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailReq.FromString,
                     response_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailResp.SerializeToString,
-            ),
-            'ActiveUser': grpc.unary_unary_rpc_method_handler(
-                    servicer.ActiveUser,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CheckActivation': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckActivation,
@@ -95,23 +78,6 @@ class ConfirmationService(object):
         return grpc.experimental.unary_unary(request, target, '/user.ConfirmationService/FindUserIdByEmail',
             app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailReq.SerializeToString,
             app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailResp.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ActiveUser(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/user.ConfirmationService/ActiveUser',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
