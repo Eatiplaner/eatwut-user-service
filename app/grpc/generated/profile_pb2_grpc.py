@@ -3,6 +3,7 @@
 import grpc
 
 from app.grpc.generated import profile_pb2 as app_dot_grpc_dot_generated_dot_profile__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class ProfileServiceStub(object):
@@ -19,12 +20,23 @@ class ProfileServiceStub(object):
                 request_serializer=app_dot_grpc_dot_generated_dot_profile__pb2.UpdateProfileRequest.SerializeToString,
                 response_deserializer=app_dot_grpc_dot_generated_dot_profile__pb2.UpdateProfileResponse.FromString,
                 )
+        self.ChangePassword = channel.unary_unary(
+                '/user.ProfileService/ChangePassword',
+                request_serializer=app_dot_grpc_dot_generated_dot_profile__pb2.ChangePasswordRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
 
 
 class ProfileServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def UpdateProfile(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ChangePassword(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +49,11 @@ def add_ProfileServiceServicer_to_server(servicer, server):
                     servicer.UpdateProfile,
                     request_deserializer=app_dot_grpc_dot_generated_dot_profile__pb2.UpdateProfileRequest.FromString,
                     response_serializer=app_dot_grpc_dot_generated_dot_profile__pb2.UpdateProfileResponse.SerializeToString,
+            ),
+            'ChangePassword': grpc.unary_unary_rpc_method_handler(
+                    servicer.ChangePassword,
+                    request_deserializer=app_dot_grpc_dot_generated_dot_profile__pb2.ChangePasswordRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +79,22 @@ class ProfileService(object):
         return grpc.experimental.unary_unary(request, target, '/user.ProfileService/UpdateProfile',
             app_dot_grpc_dot_generated_dot_profile__pb2.UpdateProfileRequest.SerializeToString,
             app_dot_grpc_dot_generated_dot_profile__pb2.UpdateProfileResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ChangePassword(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/user.ProfileService/ChangePassword',
+            app_dot_grpc_dot_generated_dot_profile__pb2.ChangePasswordRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

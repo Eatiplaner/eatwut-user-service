@@ -3,7 +3,7 @@ from mongoengine import DoesNotExist
 from app.model.user import User
 from app.model.address import Address
 from app.model.provider import Provider
-from app.services.profile import update_profile
+from app.services.profile import update_profile, change_password
 from test import BaseMock
 from test.utils import random_string_specific_length
 from test.setup.data import full_name, email, password, \
@@ -89,3 +89,23 @@ class TestUpdateProfileService(BaseMock):
 
         with self.assertRaises(Exception):
             update_profile(user_id=1, data=data_update)
+
+    def test_change_password_with_valid_params(self):
+        user = User.objects.get(ID=1)
+
+        new_password = "Aa@123456!"
+        change_password(user_id=user.ID, new_password=new_password)
+
+        assert user.reload().verify_password(new_password) is True
+
+    def test_change_password_with_password_is_not_valid(self):
+        new_password = "123456789"
+
+        with self.assertRaises(Exception):
+            change_password(user_id=1, new_password=new_password)
+
+    def test_change_password_with_not_found_user_id(self):
+        new_password = "Aa@123456!"
+
+        with self.assertRaises(Exception):
+            change_password(user_id=100, new_password=new_password)
