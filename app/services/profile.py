@@ -29,3 +29,20 @@ def update_profile(**kwargs):
     user.update(**data)
 
     return user.reload()
+
+
+def change_password(**kwargs):
+    user_id = kwargs['user_id']
+    new_password = kwargs['new_password']
+
+    if not User.valid_password(new_password):
+        raise Exception("New Password is not valid")
+
+    user = User.objects.get(ID=user_id)
+    user.password = new_password
+
+    User.generate_hash_password(user)
+
+    user.update(password=user.password)
+
+    return
