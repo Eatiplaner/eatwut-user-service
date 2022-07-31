@@ -15,10 +15,10 @@ class ConfirmationServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.FindUserIdByEmail = channel.unary_unary(
-                '/user.ConfirmationService/FindUserIdByEmail',
-                request_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailReq.SerializeToString,
-                response_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailResp.FromString,
+        self.FindUserInfoByEmail = channel.unary_unary(
+                '/user.ConfirmationService/FindUserInfoByEmail',
+                request_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserByEmailReq.SerializeToString,
+                response_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserByEmailResp.FromString,
                 )
         self.CheckActivation = channel.unary_unary(
                 '/user.ConfirmationService/CheckActivation',
@@ -35,7 +35,7 @@ class ConfirmationServiceStub(object):
 class ConfirmationServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def FindUserIdByEmail(self, request, context):
+    def FindUserInfoByEmail(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -56,10 +56,10 @@ class ConfirmationServiceServicer(object):
 
 def add_ConfirmationServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'FindUserIdByEmail': grpc.unary_unary_rpc_method_handler(
-                    servicer.FindUserIdByEmail,
-                    request_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailReq.FromString,
-                    response_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailResp.SerializeToString,
+            'FindUserInfoByEmail': grpc.unary_unary_rpc_method_handler(
+                    servicer.FindUserInfoByEmail,
+                    request_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserByEmailReq.FromString,
+                    response_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserByEmailResp.SerializeToString,
             ),
             'CheckActivation': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckActivation,
@@ -82,7 +82,7 @@ class ConfirmationService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def FindUserIdByEmail(request,
+    def FindUserInfoByEmail(request,
             target,
             options=(),
             channel_credentials=None,
@@ -92,9 +92,9 @@ class ConfirmationService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/user.ConfirmationService/FindUserIdByEmail',
-            app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailReq.SerializeToString,
-            app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserIdByEmailResp.FromString,
+        return grpc.experimental.unary_unary(request, target, '/user.ConfirmationService/FindUserInfoByEmail',
+            app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserByEmailReq.SerializeToString,
+            app_dot_grpc_dot_generated_dot_confirmation__pb2.FindUserByEmailResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

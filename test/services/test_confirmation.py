@@ -1,6 +1,6 @@
 from mongoengine import DoesNotExist
 from app.model.user import User
-from app.services.confirmation import find_user_id_by_email, active_user, check_activation
+from app.services.confirmation import find_user_info_by_email, active_user, check_activation
 from test import BaseMock
 from test.setup.data import full_name, email, password
 
@@ -18,14 +18,15 @@ class TestConfirmationService(BaseMock):
         )
         user.save()
 
-    def test_find_user_id_by_email_with_valid_params(self):
-        user_id = find_user_id_by_email(email)
+    def test_find_user_info_by_email_with_valid_params(self):
+        user = User.objects.get(email=email)
+        user_info = find_user_info_by_email(email)
 
-        assert user_id == User.objects.get(email=email).ID
+        assert user_info == {"id": user.ID, "full_name": user.full_name}
 
-    def test_find_user_id_by_email_with_not_found_user_id(self):
+    def test_find_user_info_by_email_with_not_found_user_id(self):
         with self.assertRaises(DoesNotExist):
-            find_user_id_by_email('fake_email@gmail.com')
+            find_user_info_by_email('fake_email@gmail.com')
 
     def test_active_user_with_valid_params(self):
         is_active = active_user(User.objects.get(email=email).ID)

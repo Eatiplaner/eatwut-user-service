@@ -1,9 +1,9 @@
 from app.model.user import User
 
 
-def find_user_id_by_email(email):
+def find_user_info_by_email(email):
     user = User.objects.get(email=email)
-    return user.ID
+    return {"id": user.ID, "full_name": user.full_name}
 
 
 def active_user(user_id):

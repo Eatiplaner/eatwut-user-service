@@ -4,20 +4,20 @@ from mongoengine import DoesNotExist
 
 from app.grpc.generated import confirmation_pb2_grpc, confirmation_pb2
 from app.grpc.utils.jwt import get_user_id_from_token
-from app.services.confirmation import active_user, check_activation, find_user_id_by_email
+from app.services.confirmation import active_user, check_activation, find_user_info_by_email
 
 
 class ConfirmationService(confirmation_pb2_grpc.ConfirmationService):
-    def FindUserIdByEmail(self, request, context):
+    def FindUserInfoByEmail(self, request, context):
         try:
-            id = find_user_id_by_email(request.email)
+            user_info = find_user_info_by_email(request.email)
 
-            return confirmation_pb2.FindUserIdByEmailResp(id=id)
+            return confirmation_pb2.FindUserByEmailResp(**user_info)
         except DoesNotExist as e:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details(repr(e))
 
-            return confirmation_pb2.FindUserIdByEmailResp()
+            return confirmation_pb2.FindUserByEmailResp()
 
     def ActiveUser(self, request, context):
         try:
