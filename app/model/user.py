@@ -30,9 +30,9 @@ class User(Document):
     phone = StringField()
     gender = StringField()
     dob = DateTimeField()
-    is_kol = BooleanField()
+    is_kol = BooleanField(default=False)
     last_login = DateTimeField()
-    is_active = BooleanField()
+    is_active = BooleanField(default=False)
 
     addresses = ListField(ReferenceField(Address))
     providers = ListField(ReferenceField(Provider))

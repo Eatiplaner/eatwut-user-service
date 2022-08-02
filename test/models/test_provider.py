@@ -8,9 +8,11 @@ class TestProviderModel(BaseMock):
     def test_create_provider_with_valid_data(self):
         provider = Provider(
             url="fake.com",
-            display_on_profile=False
         )
         provider.save()
+
+        # Check Default Fields
+        assert provider.display_on_profile is True
 
         assert provider.type == "unknown"
 

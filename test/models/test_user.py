@@ -29,6 +29,10 @@ class TestUserModel(BaseMock):
         assert user1.ID == 1
         assert user2.ID == 2
 
+        # Check Default Fields
+        assert user1.is_kol is False
+        assert user1.is_active is False
+
     def test_create_user_with_invalid_email_format(self):
         user = User(
             password="Aa@123456!",
