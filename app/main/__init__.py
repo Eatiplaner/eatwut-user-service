@@ -22,8 +22,8 @@ def mongo_connect():
     db = os.getenv('MONGO_DB')
     host = os.getenv('MONGO_HOST')
     port = int(os.getenv('MONGO_PORT') or "27017")
-    username = os.getenv('MONGO_INITDB_ROOT_USERNAME')
-    password = os.getenv('MONGO_INITDB_ROOT_PASSWORD')
+    username = os.getenv('MONGO_USER')
+    password = os.getenv('MONGO_PASSWORD')
 
     host = f'mongodb://{username}:{password}@{host}:{port}/{db}'
 
