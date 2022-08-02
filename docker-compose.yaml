@@ -7,6 +7,8 @@ services:
     volumes:
       - ~/mongo:/data/db
     env_file: .env
+    networks:
+      - user-service
 
   eatiplan-user-service:
     container_name: eatiplan-user-service
