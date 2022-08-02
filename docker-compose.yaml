@@ -5,7 +5,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - mongodb-data:/data/db
+      - ~/mongo:/data/db
     env_file: .env
 
   eatiplan-user-service:
@@ -23,7 +23,3 @@ services:
 networks:
   user-service:
     external: true
-
-volumes:
-  mongodb-data:
-    name: mongodb-data
