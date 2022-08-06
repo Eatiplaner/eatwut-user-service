@@ -8,6 +8,10 @@ def find_user_info_by_email(email):
 
 def active_user(user_id):
     user = User.objects.get(ID=user_id)
+
+    if user.is_active:
+        raise Exception("User already activated")
+
     user.update(is_active=True)
 
     return True

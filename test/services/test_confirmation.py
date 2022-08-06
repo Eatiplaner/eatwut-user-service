@@ -28,8 +28,18 @@ class TestConfirmationService(BaseMock):
         with self.assertRaises(DoesNotExist):
             find_user_info_by_email('fake_email@gmail.com')
 
+    def test_active_user_with_user_already_activate(self):
+        user = User.objects.get(email=email)
+        user.update(is_active=True)
+
+        with self.assertRaises(Exception):
+            active_user(user.ID)
+
     def test_active_user_with_valid_params(self):
-        is_active = active_user(User.objects.get(email=email).ID)
+        user = User.objects.get(email=email)
+        user.update(is_active=False)
+
+        is_active = active_user(user.ID)
 
         assert is_active is True
 

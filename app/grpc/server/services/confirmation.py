@@ -31,10 +31,14 @@ class ConfirmationService(confirmation_pb2_grpc.ConfirmationService):
 
     def CheckActivation(self, request, context):
         try:
-            is_active = check_activation(request.user_id)
+            user_id = get_user_id_from_token(request.token)
+            is_active = check_activation(user_id)
             return confirmation_pb2.CheckActivationResp(is_active=is_active)
         except DoesNotExist as e:
-            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_code(grpc.statuscode.not_found)
             context.set_details(repr(e))
 
-            return confirmation_pb2.CheckActivationResp()
+            return confirmation_pb2.checkactivationresp()
+        except Exception as e:
+            context.set_code(grpc.statuscode.failed_precondition)
+            context.set_details(repr(e))
