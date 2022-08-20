@@ -6,6 +6,7 @@ from mongoengine import DoesNotExist
 from app.grpc.client.decorators.auth import authenticated
 
 from app.grpc.generated import profile_pb2_grpc, profile_pb2
+from app.model.user import User
 from app.services.profile import change_password, update_profile
 
 
@@ -18,17 +19,34 @@ class ProfileService(profile_pb2_grpc.ProfileService):
                 data=MessageToDict(request.data)
             )
 
-            return profile_pb2.UpdateProfileResponse(**user.proto_data())
+            return profile_pb2.UserProfileResponse(**user.proto_data())
         except DoesNotExist as e:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details(repr(e))
 
-            return profile_pb2.UpdateProfileResponse()
+            return profile_pb2.UserProfileResponse()
         except Exception as e:
             context.set_code(grpc.StatusCode.UNIMPLEMENTED)
             context.set_details(repr(e))
 
-            return profile_pb2.UpdateProfileResponse()
+            return profile_pb2.UserProfileResponse()
+
+    @authenticated
+    def GetProfileByToken(self, request, context):
+        try:
+            user = User.objects.get(ID=context.user_id)
+
+            return profile_pb2.UserProfileResponse(**user.proto_data())
+        except DoesNotExist as e:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details(repr(e))
+
+            return profile_pb2.UserProfileResponse()
+        except Exception as e:
+            context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+            context.set_details(repr(e))
+
+            return profile_pb2.UserProfileResponse()
 
     @authenticated
     def ChangePassword(self, request, context):
