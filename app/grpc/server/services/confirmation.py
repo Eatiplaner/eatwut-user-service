@@ -31,7 +31,7 @@ class ConfirmationService(confirmation_pb2_grpc.ConfirmationService):
 
     def CheckActivation(self, request, context):
         try:
-            user_id = get_user_id_from_rpc_context(request.token)
+            user_id = get_user_id_from_rpc_context(context)
             is_active = check_activation(user_id)
             return confirmation_pb2.CheckActivationResp(is_active=is_active)
         except DoesNotExist as e:
