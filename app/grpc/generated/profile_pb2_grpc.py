@@ -22,7 +22,7 @@ class ProfileServiceStub(object):
                 )
         self.GetProfileByToken = channel.unary_unary(
                 '/user.ProfileService/GetProfileByToken',
-                request_serializer=app_dot_grpc_dot_generated_dot_profile__pb2.GetProfileByTokenReq.SerializeToString,
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=app_dot_grpc_dot_generated_dot_profile__pb2.UserProfileResponse.FromString,
                 )
         self.ChangePassword = channel.unary_unary(
@@ -63,7 +63,7 @@ def add_ProfileServiceServicer_to_server(servicer, server):
             ),
             'GetProfileByToken': grpc.unary_unary_rpc_method_handler(
                     servicer.GetProfileByToken,
-                    request_deserializer=app_dot_grpc_dot_generated_dot_profile__pb2.GetProfileByTokenReq.FromString,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=app_dot_grpc_dot_generated_dot_profile__pb2.UserProfileResponse.SerializeToString,
             ),
             'ChangePassword': grpc.unary_unary_rpc_method_handler(
@@ -110,7 +110,7 @@ class ProfileService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/user.ProfileService/GetProfileByToken',
-            app_dot_grpc_dot_generated_dot_profile__pb2.GetProfileByTokenReq.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             app_dot_grpc_dot_generated_dot_profile__pb2.UserProfileResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
