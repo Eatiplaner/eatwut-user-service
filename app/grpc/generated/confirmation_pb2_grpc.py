@@ -22,12 +22,12 @@ class ConfirmationServiceStub(object):
                 )
         self.CheckActivation = channel.unary_unary(
                 '/user.ConfirmationService/CheckActivation',
-                request_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationReq.SerializeToString,
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationResp.FromString,
                 )
         self.ActiveUser = channel.unary_unary(
                 '/user.ConfirmationService/ActiveUser',
-                request_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.ActiveUserReq.SerializeToString,
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
 
@@ -63,12 +63,12 @@ def add_ConfirmationServiceServicer_to_server(servicer, server):
             ),
             'CheckActivation': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckActivation,
-                    request_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationReq.FromString,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationResp.SerializeToString,
             ),
             'ActiveUser': grpc.unary_unary_rpc_method_handler(
                     servicer.ActiveUser,
-                    request_deserializer=app_dot_grpc_dot_generated_dot_confirmation__pb2.ActiveUserReq.FromString,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -110,7 +110,7 @@ class ConfirmationService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/user.ConfirmationService/CheckActivation',
-            app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationReq.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             app_dot_grpc_dot_generated_dot_confirmation__pb2.CheckActivationResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -127,7 +127,7 @@ class ConfirmationService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/user.ConfirmationService/ActiveUser',
-            app_dot_grpc_dot_generated_dot_confirmation__pb2.ActiveUserReq.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

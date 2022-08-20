@@ -15,15 +15,13 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%app/grpc/generated/confirmation.proto\x12\x04user\x1a\x1bgoogle/protobuf/empty.proto\"*\n\x12\x46indUserByEmailReq\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\"4\n\x13\x46indUserByEmailResp\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x11\n\tfull_name\x18\x02 \x01(\t\"*\n\x12\x43heckActivationReq\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\"(\n\x13\x43heckActivationResp\x12\x11\n\tis_active\x18\x01 \x01(\x08\"\x1e\n\rActiveUserReq\x12\r\n\x05token\x18\x01 \x01(\t2\xea\x01\n\x13\x43onfirmationService\x12L\n\x13\x46indUserInfoByEmail\x12\x18.user.FindUserByEmailReq\x1a\x19.user.FindUserByEmailResp\"\x00\x12H\n\x0f\x43heckActivation\x12\x18.user.CheckActivationReq\x1a\x19.user.CheckActivationResp\"\x00\x12;\n\nActiveUser\x12\x13.user.ActiveUserReq\x1a\x16.google.protobuf.Empty\"\x00\x42\x13Z\x11./app/grpc/rpc_pbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%app/grpc/generated/confirmation.proto\x12\x04user\x1a\x1bgoogle/protobuf/empty.proto\"*\n\x12\x46indUserByEmailReq\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\"4\n\x13\x46indUserByEmailResp\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x11\n\tfull_name\x18\x02 \x01(\t\"(\n\x13\x43heckActivationResp\x12\x11\n\tis_active\x18\x01 \x01(\x08\x32\xeb\x01\n\x13\x43onfirmationService\x12L\n\x13\x46indUserInfoByEmail\x12\x18.user.FindUserByEmailReq\x1a\x19.user.FindUserByEmailResp\"\x00\x12\x46\n\x0f\x43heckActivation\x12\x16.google.protobuf.Empty\x1a\x19.user.CheckActivationResp\"\x00\x12>\n\nActiveUser\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\"\x00\x42\x13Z\x11./app/grpc/rpc_pbb\x06proto3')
 
 
 
 _FINDUSERBYEMAILREQ = DESCRIPTOR.message_types_by_name['FindUserByEmailReq']
 _FINDUSERBYEMAILRESP = DESCRIPTOR.message_types_by_name['FindUserByEmailResp']
-_CHECKACTIVATIONREQ = DESCRIPTOR.message_types_by_name['CheckActivationReq']
 _CHECKACTIVATIONRESP = DESCRIPTOR.message_types_by_name['CheckActivationResp']
-_ACTIVEUSERREQ = DESCRIPTOR.message_types_by_name['ActiveUserReq']
 FindUserByEmailReq = _reflection.GeneratedProtocolMessageType('FindUserByEmailReq', (_message.Message,), {
   'DESCRIPTOR' : _FINDUSERBYEMAILREQ,
   '__module__' : 'app.grpc.generated.confirmation_pb2'
@@ -38,26 +36,12 @@ FindUserByEmailResp = _reflection.GeneratedProtocolMessageType('FindUserByEmailR
   })
 _sym_db.RegisterMessage(FindUserByEmailResp)
 
-CheckActivationReq = _reflection.GeneratedProtocolMessageType('CheckActivationReq', (_message.Message,), {
-  'DESCRIPTOR' : _CHECKACTIVATIONREQ,
-  '__module__' : 'app.grpc.generated.confirmation_pb2'
-  # @@protoc_insertion_point(class_scope:user.CheckActivationReq)
-  })
-_sym_db.RegisterMessage(CheckActivationReq)
-
 CheckActivationResp = _reflection.GeneratedProtocolMessageType('CheckActivationResp', (_message.Message,), {
   'DESCRIPTOR' : _CHECKACTIVATIONRESP,
   '__module__' : 'app.grpc.generated.confirmation_pb2'
   # @@protoc_insertion_point(class_scope:user.CheckActivationResp)
   })
 _sym_db.RegisterMessage(CheckActivationResp)
-
-ActiveUserReq = _reflection.GeneratedProtocolMessageType('ActiveUserReq', (_message.Message,), {
-  'DESCRIPTOR' : _ACTIVEUSERREQ,
-  '__module__' : 'app.grpc.generated.confirmation_pb2'
-  # @@protoc_insertion_point(class_scope:user.ActiveUserReq)
-  })
-_sym_db.RegisterMessage(ActiveUserReq)
 
 _CONFIRMATIONSERVICE = DESCRIPTOR.services_by_name['ConfirmationService']
 if _descriptor._USE_C_DESCRIPTORS == False:
@@ -68,12 +52,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _FINDUSERBYEMAILREQ._serialized_end=118
   _FINDUSERBYEMAILRESP._serialized_start=120
   _FINDUSERBYEMAILRESP._serialized_end=172
-  _CHECKACTIVATIONREQ._serialized_start=174
-  _CHECKACTIVATIONREQ._serialized_end=216
-  _CHECKACTIVATIONRESP._serialized_start=218
-  _CHECKACTIVATIONRESP._serialized_end=258
-  _ACTIVEUSERREQ._serialized_start=260
-  _ACTIVEUSERREQ._serialized_end=290
-  _CONFIRMATIONSERVICE._serialized_start=293
-  _CONFIRMATIONSERVICE._serialized_end=527
+  _CHECKACTIVATIONRESP._serialized_start=174
+  _CHECKACTIVATIONRESP._serialized_end=214
+  _CONFIRMATIONSERVICE._serialized_start=217
+  _CONFIRMATIONSERVICE._serialized_end=452
 # @@protoc_insertion_point(module_scope)

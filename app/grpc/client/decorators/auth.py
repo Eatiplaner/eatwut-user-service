@@ -11,10 +11,10 @@ def authenticated(func):
             stub = jwt_pb2_grpc.JwtServiceStub(channel)
 
             try:
-                response = stub.ValidToken(jwt_pb2.ValidRequest(**{"token": _authorization_key(context)}))
+                response = stub.ValidToken(jwt_pb2.ValidRequest(**{"token": authorization_key(context)}))
 
                 if response.valid is True:
-                    user_id = get_user_id_from_token(_authorization_key(context))
+                    user_id = get_user_id_from_token(authorization_key(context))
                     context.user_id = user_id
 
                     return func(self, request, context)
@@ -26,6 +26,6 @@ def authenticated(func):
     return inner
 
 
-def _authorization_key(context):
+def authorization_key(context):
     metadict = dict(context.invocation_metadata())
     return metadict['authorization']
