@@ -1,8 +1,6 @@
 import jwt
 import os
 
-from app.grpc.client.decorators.auth import authorization_key
-
 
 def get_user_id_from_token(token):
     access_token = os.getenv("JWT_ACCESS_SECRET")
@@ -25,3 +23,8 @@ def get_user_id_from_rpc_context(context):
         raise Exception
 
     return payload['user_id']
+
+
+def authorization_key(context):
+    metadict = dict(context.invocation_metadata())
+    return metadict['authorization']
