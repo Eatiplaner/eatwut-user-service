@@ -1,4 +1,3 @@
-from datetime import date
 from mongoengine import DoesNotExist
 from app.model.user import User
 from app.model.address import Address
@@ -112,6 +111,6 @@ class TestUpdateProfileService(BaseMock):
 
         assert user.reload().last_login is not None
 
-    def test_change_password_with_not_found_user_id(self):
+    def test_record_login_time_with_not_found_user_id(self):
         with self.assertRaises(Exception):
             record_login_time(user_id=100)

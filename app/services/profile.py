@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import datetime
 
 from app.model.address import Address
 from app.model.provider import Provider
