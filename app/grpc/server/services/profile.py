@@ -3,7 +3,7 @@ from google.protobuf.json_format import MessageToDict
 import grpc
 from mongoengine import DoesNotExist
 
-from app.grpc.client.decorators.auth import authenticated
+from app.grpc.client.decorators.auth import activated, authenticated
 
 from app.grpc.generated import profile_pb2_grpc, profile_pb2
 from app.model.user import User
@@ -11,7 +11,7 @@ from app.services.profile import change_password, update_profile
 
 
 class ProfileService(profile_pb2_grpc.ProfileService):
-    @authenticated
+    @activated
     def UpdateProfile(self, request, context):
         try:
             user = update_profile(

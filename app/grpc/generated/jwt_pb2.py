@@ -12,21 +12,14 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1c\x61pp/grpc/generated/jwt.proto\x12\x04\x61uth\"\x1d\n\x0cValidRequest\x12\r\n\x05token\x18\x01 \x01(\t\"\x1e\n\rValidResponse\x12\r\n\x05valid\x18\x01 \x01(\x08\x32\x45\n\nJwtService\x12\x37\n\nValidToken\x12\x12.auth.ValidRequest\x1a\x13.auth.ValidResponse\"\x00\x42\x13Z\x11./app/grpc/rpc_pbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1c\x61pp/grpc/generated/jwt.proto\x12\x04\x61uth\x1a\x1bgoogle/protobuf/empty.proto\"\x1e\n\rValidResponse\x12\r\n\x05valid\x18\x01 \x01(\x08\x32\x90\x01\n\nJwtService\x12\x45\n\x14ValidActivationToken\x12\x16.google.protobuf.Empty\x1a\x13.auth.ValidResponse\"\x00\x12;\n\nValidToken\x12\x16.google.protobuf.Empty\x1a\x13.auth.ValidResponse\"\x00\x42\x13Z\x11./app/grpc/rpc_pbb\x06proto3')
 
 
 
-_VALIDREQUEST = DESCRIPTOR.message_types_by_name['ValidRequest']
 _VALIDRESPONSE = DESCRIPTOR.message_types_by_name['ValidResponse']
-ValidRequest = _reflection.GeneratedProtocolMessageType('ValidRequest', (_message.Message,), {
-  'DESCRIPTOR' : _VALIDREQUEST,
-  '__module__' : 'app.grpc.generated.jwt_pb2'
-  # @@protoc_insertion_point(class_scope:auth.ValidRequest)
-  })
-_sym_db.RegisterMessage(ValidRequest)
-
 ValidResponse = _reflection.GeneratedProtocolMessageType('ValidResponse', (_message.Message,), {
   'DESCRIPTOR' : _VALIDRESPONSE,
   '__module__' : 'app.grpc.generated.jwt_pb2'
@@ -39,10 +32,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\021./app/grpc/rpc_pb'
-  _VALIDREQUEST._serialized_start=38
-  _VALIDREQUEST._serialized_end=67
-  _VALIDRESPONSE._serialized_start=69
-  _VALIDRESPONSE._serialized_end=99
-  _JWTSERVICE._serialized_start=101
-  _JWTSERVICE._serialized_end=170
+  _VALIDRESPONSE._serialized_start=67
+  _VALIDRESPONSE._serialized_end=97
+  _JWTSERVICE._serialized_start=100
+  _JWTSERVICE._serialized_end=244
 # @@protoc_insertion_point(module_scope)

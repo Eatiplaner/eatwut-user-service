@@ -22,9 +22,6 @@ def update_profile(**kwargs):
     if "dob" in data:
         data["dob"] = data["dob"] and datetime.strptime(data["dob"], dateTimeFormat) or None
 
-    if "last_login" in data:
-        data["last_login"] = data["last_login"] and datetime.strptime(data["last_login"], dateTimeFormat) or None
-
     user = User.objects.get(ID=user_id)
     user.update(**data)
 
@@ -44,5 +41,12 @@ def change_password(**kwargs):
     User.generate_hash_password(user)
 
     user.update(password=user.password)
+
+    return
+
+
+def record_login_time(user_id):
+    user = User.objects.get(ID=user_id)
+    user.update(last_login=date.today())
 
     return
