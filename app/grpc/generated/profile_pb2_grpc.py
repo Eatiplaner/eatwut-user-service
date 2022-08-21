@@ -30,6 +30,11 @@ class ProfileServiceStub(object):
                 request_serializer=app_dot_grpc_dot_generated_dot_profile__pb2.ChangePasswordRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
+        self.RecordLoginTime = channel.unary_unary(
+                '/user.ProfileService/RecordLoginTime',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
 
 
 class ProfileServiceServicer(object):
@@ -53,6 +58,12 @@ class ProfileServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def RecordLoginTime(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ProfileServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -69,6 +80,11 @@ def add_ProfileServiceServicer_to_server(servicer, server):
             'ChangePassword': grpc.unary_unary_rpc_method_handler(
                     servicer.ChangePassword,
                     request_deserializer=app_dot_grpc_dot_generated_dot_profile__pb2.ChangePasswordRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'RecordLoginTime': grpc.unary_unary_rpc_method_handler(
+                    servicer.RecordLoginTime,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -128,6 +144,23 @@ class ProfileService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/user.ProfileService/ChangePassword',
             app_dot_grpc_dot_generated_dot_profile__pb2.ChangePasswordRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RecordLoginTime(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/user.ProfileService/RecordLoginTime',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

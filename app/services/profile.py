@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from app.model.address import Address
 from app.model.provider import Provider
@@ -47,6 +47,6 @@ def change_password(**kwargs):
 
 def record_login_time(user_id):
     user = User.objects.get(ID=user_id)
-    user.update(last_login=date.today())
+    user.update(last_login=datetime.now())
 
     return

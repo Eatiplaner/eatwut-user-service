@@ -7,7 +7,7 @@ from app.grpc.client.decorators.auth import activated, authenticated
 
 from app.grpc.generated import profile_pb2_grpc, profile_pb2
 from app.model.user import User
-from app.services.profile import change_password, update_profile
+from app.services.profile import change_password, record_login_time, update_profile
 
 
 class ProfileService(profile_pb2_grpc.ProfileService):
@@ -64,6 +64,18 @@ class ProfileService(profile_pb2_grpc.ProfileService):
             return empty_pb2.Empty()
         except Exception as e:
             context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+            context.set_details(repr(e))
+
+            return empty_pb2.Empty()
+
+    @authenticated
+    def RecordLoginTime(self, request, context):
+        try:
+            record_login_time(context.user_id)
+
+            return empty_pb2.Empty()
+        except DoesNotExist as e:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details(repr(e))
 
             return empty_pb2.Empty()
