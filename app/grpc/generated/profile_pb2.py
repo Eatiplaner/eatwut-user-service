@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n app/grpc/generated/profile.proto\x12\x04user\x1a\x1bgoogle/protobuf/empty.proto\"y\n\x0fUserAddressData\x12\x1a\n\x08\x64istrict\x18\x01 \x01(\tR\x08\x64istrict\x12\x12\n\x04\x63ity\x18\x02 \x01(\tR\x04\x63ity\x12\x10\n\x03lat\x18\x03 \x01(\tR\x03lat\x12\x10\n\x03lng\x18\x04 \x01(\tR\x03lng\x12\x12\n\x04type\x18\x05 \x01(\tR\x04type\"h\n\x10UserProviderData\x12\x10\n\x03url\x18\x01 \x01(\tR\x03url\x12\x12\n\x04type\x18\x02 \x01(\tR\x04type\x12.\n\x12\x64isplay_on_profile\x18\x03 \x01(\x08R\x12\x64isplay_on_profile\"\xb3\x03\n\x11UpdateProfileData\x12\x1a\n\x08username\x18\x01 \x01(\tR\x08username\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\x12\x1c\n\tfull_name\x18\x03 \x01(\tR\tfull_name\x12\x12\n\x03\x62io\x18\x04 \x01(\tH\x00R\x03\x62io\x12\x16\n\x05phone\x18\x05 \x01(\tH\x01R\x05phone\x12\x16\n\x06gender\x18\x06 \x01(\tR\x06gender\x12\x12\n\x03\x64ob\x18\x07 \x01(\tH\x02R\x03\x64ob\x12 \n\nlast_login\x18\x08 \x01(\tH\x03R\nlast_login\x12\x33\n\taddresses\x18\t \x03(\x0b\x32\x15.user.UserAddressDataR\taddresses\x12\x34\n\tproviders\x18\n \x03(\x0b\x32\x16.user.UserProviderDataR\tproviders\x12,\n\x11prefer_categories\x18\x0b \x03(\tR\x11prefer_categoriesB\x0b\n\tbio_oneofB\r\n\x0bphone_oneofB\x0b\n\tdob_oneofB\x12\n\x10last_login_oneof\"C\n\x14UpdateProfileRequest\x12+\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x17.user.UpdateProfileDataR\x04\x64\x61ta\"%\n\x14GetProfileByTokenReq\x12\r\n\x05token\x18\x01 \x01(\t\"h\n\x12ProfileUserAddress\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x10\n\x08\x64istrict\x18\x02 \x01(\t\x12\x0c\n\x04\x63ity\x18\x03 \x01(\t\x12\x0b\n\x03lat\x18\x04 \x01(\t\x12\x0b\n\x03lng\x18\x05 \x01(\t\x12\x0c\n\x04type\x18\x06 \x01(\t\"X\n\x13ProfileUserProvider\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0b\n\x03url\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x1a\n\x12\x64isplay_on_profile\x18\x04 \x01(\x08\"\x80\x03\n\x13UserProfileResponse\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x10\n\x08username\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x11\n\tfull_name\x18\x04 \x01(\t\x12\r\n\x03\x62io\x18\x05 \x01(\tH\x00\x12\x0f\n\x05phone\x18\x06 \x01(\tH\x01\x12\x0e\n\x06gender\x18\x07 \x01(\t\x12\r\n\x03\x64ob\x18\x08 \x01(\tH\x02\x12\x14\n\nlast_login\x18\t \x01(\tH\x03\x12+\n\taddresses\x18\n \x03(\x0b\x32\x18.user.ProfileUserAddress\x12,\n\tproviders\x18\x0b \x03(\x0b\x32\x19.user.ProfileUserProvider\x12\x19\n\x11prefer_categories\x18\x0c \x03(\t\x12\x11\n\tis_active\x18\r \x01(\x08\x12\x0e\n\x06is_kol\x18\x0e \x01(\x08\x42\x0b\n\tbio_oneofB\r\n\x0bphone_oneofB\x0b\n\tdob_oneofB\x12\n\x10last_login_oneof\";\n\x15\x43hangePasswordRequest\x12\"\n\x0cnew_password\x18\x01 \x01(\tR\x0cnew_password2\xed\x01\n\x0eProfileService\x12H\n\rUpdateProfile\x12\x1a.user.UpdateProfileRequest\x1a\x19.user.UserProfileResponse\"\x00\x12H\n\x11GetProfileByToken\x12\x16.google.protobuf.Empty\x1a\x19.user.UserProfileResponse\"\x00\x12G\n\x0e\x43hangePassword\x12\x1b.user.ChangePasswordRequest\x1a\x16.google.protobuf.Empty\"\x00\x42\x13Z\x11./app/grpc/rpc_pbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n app/grpc/generated/profile.proto\x12\x04user\x1a\x1bgoogle/protobuf/empty.proto\"y\n\x0fUserAddressData\x12\x1a\n\x08\x64istrict\x18\x01 \x01(\tR\x08\x64istrict\x12\x12\n\x04\x63ity\x18\x02 \x01(\tR\x04\x63ity\x12\x10\n\x03lat\x18\x03 \x01(\tR\x03lat\x12\x10\n\x03lng\x18\x04 \x01(\tR\x03lng\x12\x12\n\x04type\x18\x05 \x01(\tR\x04type\"h\n\x10UserProviderData\x12\x10\n\x03url\x18\x01 \x01(\tR\x03url\x12\x12\n\x04type\x18\x02 \x01(\tR\x04type\x12.\n\x12\x64isplay_on_profile\x18\x03 \x01(\x08R\x12\x64isplay_on_profile\"\xfd\x02\n\x11UpdateProfileData\x12\x1a\n\x08username\x18\x01 \x01(\tR\x08username\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\x12\x1c\n\tfull_name\x18\x03 \x01(\tR\tfull_name\x12\x12\n\x03\x62io\x18\x04 \x01(\tH\x00R\x03\x62io\x12\x16\n\x05phone\x18\x05 \x01(\tH\x01R\x05phone\x12\x16\n\x06gender\x18\x06 \x01(\tR\x06gender\x12\x12\n\x03\x64ob\x18\x07 \x01(\tH\x02R\x03\x64ob\x12\x33\n\taddresses\x18\x08 \x03(\x0b\x32\x15.user.UserAddressDataR\taddresses\x12\x34\n\tproviders\x18\t \x03(\x0b\x32\x16.user.UserProviderDataR\tproviders\x12,\n\x11prefer_categories\x18\n \x03(\tR\x11prefer_categoriesB\x0b\n\tbio_oneofB\r\n\x0bphone_oneofB\x0b\n\tdob_oneof\"C\n\x14UpdateProfileRequest\x12+\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x17.user.UpdateProfileDataR\x04\x64\x61ta\"%\n\x14GetProfileByTokenReq\x12\r\n\x05token\x18\x01 \x01(\t\"h\n\x12ProfileUserAddress\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x10\n\x08\x64istrict\x18\x02 \x01(\t\x12\x0c\n\x04\x63ity\x18\x03 \x01(\t\x12\x0b\n\x03lat\x18\x04 \x01(\t\x12\x0b\n\x03lng\x18\x05 \x01(\t\x12\x0c\n\x04type\x18\x06 \x01(\t\"X\n\x13ProfileUserProvider\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0b\n\x03url\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x1a\n\x12\x64isplay_on_profile\x18\x04 \x01(\x08\"\x80\x03\n\x13UserProfileResponse\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x10\n\x08username\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x11\n\tfull_name\x18\x04 \x01(\t\x12\r\n\x03\x62io\x18\x05 \x01(\tH\x00\x12\x0f\n\x05phone\x18\x06 \x01(\tH\x01\x12\x0e\n\x06gender\x18\x07 \x01(\t\x12\r\n\x03\x64ob\x18\x08 \x01(\tH\x02\x12\x14\n\nlast_login\x18\t \x01(\tH\x03\x12+\n\taddresses\x18\n \x03(\x0b\x32\x18.user.ProfileUserAddress\x12,\n\tproviders\x18\x0b \x03(\x0b\x32\x19.user.ProfileUserProvider\x12\x19\n\x11prefer_categories\x18\x0c \x03(\t\x12\x11\n\tis_active\x18\r \x01(\x08\x12\x0e\n\x06is_kol\x18\x0e \x01(\x08\x42\x0b\n\tbio_oneofB\r\n\x0bphone_oneofB\x0b\n\tdob_oneofB\x12\n\x10last_login_oneof\";\n\x15\x43hangePasswordRequest\x12\"\n\x0cnew_password\x18\x01 \x01(\tR\x0cnew_password2\xb2\x02\n\x0eProfileService\x12H\n\rUpdateProfile\x12\x1a.user.UpdateProfileRequest\x1a\x19.user.UserProfileResponse\"\x00\x12H\n\x11GetProfileByToken\x12\x16.google.protobuf.Empty\x1a\x19.user.UserProfileResponse\"\x00\x12G\n\x0e\x43hangePassword\x12\x1b.user.ChangePasswordRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x43\n\x0fRecordLoginTime\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\"\x00\x42\x13Z\x11./app/grpc/rpc_pbb\x06proto3')
 
 
 
@@ -101,19 +101,19 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _USERPROVIDERDATA._serialized_start=194
   _USERPROVIDERDATA._serialized_end=298
   _UPDATEPROFILEDATA._serialized_start=301
-  _UPDATEPROFILEDATA._serialized_end=736
-  _UPDATEPROFILEREQUEST._serialized_start=738
-  _UPDATEPROFILEREQUEST._serialized_end=805
-  _GETPROFILEBYTOKENREQ._serialized_start=807
-  _GETPROFILEBYTOKENREQ._serialized_end=844
-  _PROFILEUSERADDRESS._serialized_start=846
-  _PROFILEUSERADDRESS._serialized_end=950
-  _PROFILEUSERPROVIDER._serialized_start=952
-  _PROFILEUSERPROVIDER._serialized_end=1040
-  _USERPROFILERESPONSE._serialized_start=1043
-  _USERPROFILERESPONSE._serialized_end=1427
-  _CHANGEPASSWORDREQUEST._serialized_start=1429
-  _CHANGEPASSWORDREQUEST._serialized_end=1488
-  _PROFILESERVICE._serialized_start=1491
-  _PROFILESERVICE._serialized_end=1728
+  _UPDATEPROFILEDATA._serialized_end=682
+  _UPDATEPROFILEREQUEST._serialized_start=684
+  _UPDATEPROFILEREQUEST._serialized_end=751
+  _GETPROFILEBYTOKENREQ._serialized_start=753
+  _GETPROFILEBYTOKENREQ._serialized_end=790
+  _PROFILEUSERADDRESS._serialized_start=792
+  _PROFILEUSERADDRESS._serialized_end=896
+  _PROFILEUSERPROVIDER._serialized_start=898
+  _PROFILEUSERPROVIDER._serialized_end=986
+  _USERPROFILERESPONSE._serialized_start=989
+  _USERPROFILERESPONSE._serialized_end=1373
+  _CHANGEPASSWORDREQUEST._serialized_start=1375
+  _CHANGEPASSWORDREQUEST._serialized_end=1434
+  _PROFILESERVICE._serialized_start=1437
+  _PROFILESERVICE._serialized_end=1743
 # @@protoc_insertion_point(module_scope)

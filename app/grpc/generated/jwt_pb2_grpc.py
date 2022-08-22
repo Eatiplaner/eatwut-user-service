@@ -3,6 +3,7 @@
 import grpc
 
 from app.grpc.generated import jwt_pb2 as app_dot_grpc_dot_generated_dot_jwt__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class JwtServiceStub(object):
@@ -14,15 +15,26 @@ class JwtServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.ValidActivationToken = channel.unary_unary(
+                '/auth.JwtService/ValidActivationToken',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.FromString,
+                )
         self.ValidToken = channel.unary_unary(
                 '/auth.JwtService/ValidToken',
-                request_serializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidRequest.SerializeToString,
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.FromString,
                 )
 
 
 class JwtServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
+
+    def ValidActivationToken(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ValidToken(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -33,9 +45,14 @@ class JwtServiceServicer(object):
 
 def add_JwtServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'ValidActivationToken': grpc.unary_unary_rpc_method_handler(
+                    servicer.ValidActivationToken,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.SerializeToString,
+            ),
             'ValidToken': grpc.unary_unary_rpc_method_handler(
                     servicer.ValidToken,
-                    request_deserializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidRequest.FromString,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.SerializeToString,
             ),
     }
@@ -49,6 +66,23 @@ class JwtService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
+    def ValidActivationToken(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.JwtService/ValidActivationToken',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def ValidToken(request,
             target,
             options=(),
@@ -60,7 +94,7 @@ class JwtService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/auth.JwtService/ValidToken',
-            app_dot_grpc_dot_generated_dot_jwt__pb2.ValidRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             app_dot_grpc_dot_generated_dot_jwt__pb2.ValidResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

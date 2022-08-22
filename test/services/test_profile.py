@@ -1,9 +1,8 @@
-from datetime import date
 from mongoengine import DoesNotExist
 from app.model.user import User
 from app.model.address import Address
 from app.model.provider import Provider
-from app.services.profile import update_profile, change_password
+from app.services.profile import record_login_time, update_profile, change_password
 from test import BaseMock
 from test.utils import random_string_specific_length
 from test.setup.data import full_name, email, password, \
@@ -22,7 +21,6 @@ class TestUpdateProfileService(BaseMock):
             password=password,
             full_name=full_name,
             email=email,
-            last_login=date.today(),
             addresses=[addresses],
             providers=[providers]
         )
@@ -35,7 +33,6 @@ class TestUpdateProfileService(BaseMock):
             "bio": "It's my Faliur",
             "dob": "06-05-1998 00:00:00",
             "phone": "0123456789",
-            "last_login": "",
             "is_kol": True,
             "addresses": [address1, address2],
             "providers": [provider_youtube, provider_tiktok],
@@ -52,8 +49,6 @@ class TestUpdateProfileService(BaseMock):
         assert user_updated.addresses[1].type == "office"
         assert len(user_updated.providers) == 2
         assert len(user_updated.prefer_categories) != len(user_pre_update.prefer_categories)
-
-        assert user_updated.last_login is None
 
         # TODO: make sure old address and provider has been removed
         # assert Address.objects.count() == 2
@@ -109,3 +104,13 @@ class TestUpdateProfileService(BaseMock):
 
         with self.assertRaises(Exception):
             change_password(user_id=100, new_password=new_password)
+
+    def test_record_login_time_with_valid_params(self):
+        user = User.objects.get(ID=1)
+        record_login_time(user_id=user.ID)
+
+        assert user.reload().last_login is not None
+
+    def test_record_login_time_with_not_found_user_id(self):
+        with self.assertRaises(Exception):
+            record_login_time(user_id=100)
