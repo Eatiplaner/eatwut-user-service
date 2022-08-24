@@ -1,6 +1,6 @@
 full_name = "Stephen Jamson"
-password = "eatiplaner01!123"
-email = 'eatiplaner01@gmail.com'
+password = "eatwut01!123"
+email = 'eatwut01@gmail.com'
 
 # Address
 address1 = {

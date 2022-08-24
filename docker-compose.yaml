@@ -11,8 +11,8 @@ services:
     networks:
       - user-service
 
-  eatiplan-user-service:
-    container_name: eatiplan-user-service
+  eatwut-user-service:
+    container_name: eatwut-user-service
     restart: always
     env_file: .env
     build: .

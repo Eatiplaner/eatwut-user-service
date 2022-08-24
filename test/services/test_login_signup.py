@@ -21,7 +21,7 @@ class TestLoginSignupService(BaseMock):
 
         assert result.username == 'stephen_jamson'
         assert result.full_name == 'Stephen Jamson'
-        assert result.email == 'eatiplaner01@gmail.com'
+        assert result.email == 'eatwut01@gmail.com'
         assert result.ID == 1
 
     def test_find_user_by_credential_with_correct_email(self):
@@ -29,7 +29,7 @@ class TestLoginSignupService(BaseMock):
 
         assert result.username == 'stephen_jamson'
         assert result.full_name == 'Stephen Jamson'
-        assert result.email == 'eatiplaner01@gmail.com'
+        assert result.email == 'eatwut01@gmail.com'
         assert result.ID == 1
 
     def test_find_user_by_credential_with_incorrect_credential(self):
